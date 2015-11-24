@@ -1,0 +1,17 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Minigames\Minigame_WhackAMole\Scripts\Minigame_WhackAMole_Hole.cs">
+    <Files>
+      <File FileName="Assets\Scripts\Main\MiniGame.cs" Line="9" Column="2" />
+      <File FileName="Assets\Scripts\Main\Game.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Main\MainGame.cs" Line="1" Column="1" />
+      <File FileName="Assets\Minigames\Minigame_WhackAMole\Scripts\Minigame_WhackAMole.cs" Line="1" Column="1" />
+      <File FileName="Assets\Minigames\Minigame_WhackAMole\Scripts\Minigame_WhackAMole_Hole.cs" Line="38" Column="29" />
+      <File FileName="Assets\Minigames\Minigame_WhackAMole\Scripts\Minigame_WhackAMole_Mole.cs" Line="47" Column="12" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
