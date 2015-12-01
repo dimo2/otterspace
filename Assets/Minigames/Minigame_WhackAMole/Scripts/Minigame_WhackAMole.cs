@@ -63,8 +63,8 @@ public class Minigame_WhackAMole : MiniGame
 				go.transform.parent = transform;
 				go.transform.localPosition =
 					new Vector3(
-						-2.7f + (j*2.4f),
-						2.2f - (i * 2.2f));
+						-((-0.5f+(columns/2))*2.4f) + (j*2.4f),
+						2f - (i * 2.2f) - (Mathf.Abs(3.5f-(j+1))*0.1f));
 				go.GetComponent<Minigame_WhackAMole_Hole>().Sort(i);
 				holes.Add(go.GetComponent<Minigame_WhackAMole_Hole>());
 			}
