@@ -1,9 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Minigames\Minigame_WhackAMole\Scripts\Minigame_WhackAMole.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Minigames\Minigame_Memory\Scripts\Minigame_Memory.cs">
     <Files>
-      <File FileName="Assets\Minigames\Minigame_WhackAMole\Scripts\Minigame_WhackAMole.cs" Line="55" Column="26" />
-      <File FileName="Assets\Minigames\Minigame_WhackAMole\Scripts\Minigame_WhackAMole_Hole.cs" Line="46" Column="2" />
+      <File FileName="Assets\Minigames\Minigame_Memory\Scripts\Minigame_Memory_Karte.cs" Line="6" Column="22" />
+      <File FileName="Assets\Minigames\Minigame_Memory\Scripts\Minigame_Memory.cs" Line="29" Column="31" />
+      <File FileName="Assets\Minigames\Minigame_WhackAMole\Scripts\Minigame_WhackAMole.cs" Line="65" Column="17" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
