@@ -44,7 +44,7 @@ public class Minigame_Memory : MiniGame
 		for (int i = 0; i < rows; i++)
 			for (int j = 0; j < columns; j++)
 		{
-			if (placed > Karten.Count)
+			if (placed >= Karten.Count)
 				return;
 			GameObject go;
 			for(;;)
