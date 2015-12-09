@@ -83,6 +83,13 @@ public class MiniGame_DodgeAsteroids : MiniGame {
             go.transform.parent = transform;
             time = 0;
         }
+
+        if (time2 > 15)
+        {
+            Win();
+            foreach (Transform child in transform) Destroy(child.GetComponent<GameObject>()); // Für jedes Transform item(child) in transform.
+        }
+
         if (ufoScript.lives == 0)
         {
             Lose();
@@ -96,7 +103,6 @@ public class MiniGame_DodgeAsteroids : MiniGame {
             landscape = GameObject.Instantiate(landscapes[Random.Range(0, landscapes.Count)]);
             landscape.transform.parent = transform;
         }
-
         
         for (int i = 0; i < stars.Count; i++)
         {
