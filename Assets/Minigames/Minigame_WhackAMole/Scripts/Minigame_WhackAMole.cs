@@ -9,6 +9,8 @@ public class Minigame_WhackAMole : MiniGame
 	public float timeToAppear;
 	private float time;
 
+	public int aliensToWin = 20;
+
 	public GameObject holePrefab;
 	private List<Minigame_WhackAMole_Hole> holes;
 
@@ -37,7 +39,7 @@ public class Minigame_WhackAMole : MiniGame
 			CreateMole();
 			time = 0;
 		}
-		if (Score >= 20)
+		if (Score >= aliensToWin)
 			Win();
 	}
 
@@ -48,7 +50,7 @@ public class Minigame_WhackAMole : MiniGame
 			Screen.width/2 - Screen.width/10, 
 			Screen.height/40,
 			Screen.width/5, style.font.lineHeight),
-			"Aliens gerettet " + Score.ToString() + "/20",
+			"Aliens gerettet " + Score.ToString() + "/" + aliensToWin,
 			style);
 	}
 

@@ -44,7 +44,7 @@ public class Minigame_Memory : MiniGame
 		for (int i = 0; i < rows; i++)
 			for (int j = 0; j < columns; j++)
 		{
-			if (placed >= Karten.Count)
+			if (placed > Karten.Count)
 				return;
 			GameObject go;
 			for(;;)
@@ -60,5 +60,17 @@ public class Minigame_Memory : MiniGame
 					2f - (i * 2.2f));
 			placed++;
 		}
+	}
+
+	private void CheckField()
+	{
+		bool win = true;
+		for (int i = 0; i < Karten.Count; i++)
+		{
+			if (!Karten[i].isFlipped)
+				win = false;
+		}
+		if (win)
+			Win ();
 	}
 }

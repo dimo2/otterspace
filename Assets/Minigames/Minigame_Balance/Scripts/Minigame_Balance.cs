@@ -43,7 +43,7 @@ public class Minigame_Balance : MiniGame {
 			Screen.width/2 - Screen.width/10, 
 			Screen.height/40,
 			Screen.width/5, style.font.lineHeight),
-			"Aliens gerettet " + Score.ToString() + "/20",
+			"Überlebe noch " + countdown.ToString("N0") + " Sekunden!",
 			style);
 	}
 
