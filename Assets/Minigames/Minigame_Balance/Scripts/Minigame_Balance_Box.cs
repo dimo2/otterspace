@@ -15,21 +15,19 @@ public class Minigame_Balance_Box : MonoBehaviour {
 
 	void Update() {
 
-		// Die oberen beiden auskommentierten Zeilen sind zum Testen in Unity,
-		// der Rest für die Android-Version.
-
-
-		/* float translation = Input.GetAxis("Horizontal") * 0.02F;
-		transform.Translate(translation, 0, 0); */
-
-		Vector3 dir = Vector3.zero;
-		dir.x = Input.acceleration.x;
-		// dir.z = Input.acceleration.x;
-		if (dir.sqrMagnitude > 1)
-			dir.Normalize();
+		if (Application.isEditor) {
+			float translation = Input.GetAxis ("Horizontal") * 0.02F;
+			transform.Translate (translation, 0, 0);
+		} else {
+			Vector3 dir = Vector3.zero;
+			dir.x = Input.acceleration.x;
+			// dir.z = Input.acceleration.x;
+			if (dir.sqrMagnitude > 1)
+				dir.Normalize ();
 		
-		dir *= Time.deltaTime;
-		transform.Translate(dir * speed);
+			dir *= Time.deltaTime;
+			transform.Translate (dir * speed);
+		}
 
 	}
 }
