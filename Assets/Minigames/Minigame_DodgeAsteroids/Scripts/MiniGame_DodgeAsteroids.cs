@@ -28,13 +28,15 @@ public class MiniGame_DodgeAsteroids : MiniGame {
     private float time;
     private float time2;
 
+    private GUIStyle style;
+
     // Use this for initialization
     void Start () {
         GameObject go = GameObject.Instantiate(otterUfoPrefab);
         go.transform.parent = transform;
         ufoScript = go.GetComponent<MiniGame_DA_OtterUfo>();
 
-        timeToAppear *= timeFactor + Random.Range(-0.25f, 0.25f);
+        timeToAppear *= timeFactor + Random.Range(-0.25f, 0.50f);
 
         asteroids = new List<GameObject>(); // !
         asteroids.Add(asteroid1Prefab);
@@ -69,6 +71,7 @@ public class MiniGame_DodgeAsteroids : MiniGame {
 
         time = 0;
 
+        style = GameObject.FindGameObjectWithTag("GameController").GetComponent<MainGame>().Style;
     }
 	
 	// Update is called once per frame
@@ -76,11 +79,12 @@ public class MiniGame_DodgeAsteroids : MiniGame {
         GameObject go;
         time += Time.deltaTime;
         time2 += Time.deltaTime;
-        if (time >= timeToAppear)
+        if (time >= timeToAppear) // Instantiierung der Asteroiden über den Zeitfaktor timeToAppear
         {
             int r = Random.Range(0, 3);
             go = GameObject.Instantiate(asteroids[r]);
             go.transform.parent = transform;
+            timeToAppear = timeFactor + Random.Range(-0.25f, 0.25f);
             time = 0;
         }
 
@@ -88,6 +92,8 @@ public class MiniGame_DodgeAsteroids : MiniGame {
         {
             Win();
             foreach (Transform child in transform) Destroy(child.GetComponent<GameObject>()); // Für jedes Transform item(child) in transform.
+            Score += (2 - timeFactor) * 15; // Vorläufiger Score. Wird geändert, wenn wir genau wissen, wie das aussehen soll!
+            Score = Mathf.Round(Score);
         }
 
         if (ufoScript.lives == 0)
@@ -114,5 +120,17 @@ public class MiniGame_DodgeAsteroids : MiniGame {
 
         mond.transform.Translate(Vector3.left * Time.deltaTime*0.3f);
         mond.transform.localEulerAngles = new Vector3(0, 0, mond.transform.localEulerAngles.z + 0.017f); //.localEulerAngles.Set geht nicht!!
+    }
+
+    public void OnGUI()
+    {
+        GUI.Label(
+            new Rect(
+            Screen.width / 2 - Screen.width / 10,
+            Screen.height / 40,
+            Screen.width / 5, 40),
+            "Leben übrig: " + ufoScript.lives.ToString() + '\n' +
+            "Zeit zum Sieg: " + Mathf.Round(15-time2).ToString(),
+            style);
     }
 }

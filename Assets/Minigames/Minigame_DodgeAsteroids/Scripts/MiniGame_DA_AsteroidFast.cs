@@ -49,8 +49,8 @@ public class MiniGame_DA_AsteroidFast : MonoBehaviour {
 
         GameObject go = GameObject.Instantiate(brokenAsteroidPrefab);
         go.transform.parent = transform;
-        go.transform.localPosition = transform.localPosition;
-        go.transform.localRotation = transform.localRotation;
+        go.transform.position = transform.position;
+        go.transform.position = transform.position;
 
         this.gameObject.GetComponent<Collider2D>().enabled = false; // Polygon Collider disablen
 
