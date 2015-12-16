@@ -42,7 +42,7 @@ public class Minigame_Balance : MiniGame {
 			new Rect(
 			Screen.width/2 - Screen.width/10, 
 			Screen.height/40,
-			Screen.width/5, style.font.lineHeight),
+			Screen.width/5, 40),
 			"Überlebe noch " + countdown.ToString("N0") + " Sekunden!",
 			style);
 	}
