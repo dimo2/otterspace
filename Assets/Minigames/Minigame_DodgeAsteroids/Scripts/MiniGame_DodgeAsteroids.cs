@@ -13,6 +13,7 @@ public class MiniGame_DodgeAsteroids : MiniGame {
     public GameObject asteroid3Prefab;
 
     private List<GameObject> landscapes;
+    public GameObject landscape0Prefab;
     public GameObject landscape1Prefab;
     public GameObject landscape2Prefab;
     public GameObject landscape3Prefab;
@@ -24,7 +25,12 @@ public class MiniGame_DodgeAsteroids : MiniGame {
     public GameObject mondPrefab;
     private GameObject mond;
 
+    public GameObject finishPrefab;
+    private GameObject finish;
+
     public float timeToAppear;
+    public float publicTimeFactor;
+    private float distanceToFinish;
     private float time;
     private float time2;
 
@@ -36,7 +42,8 @@ public class MiniGame_DodgeAsteroids : MiniGame {
         go.transform.parent = transform;
         ufoScript = go.GetComponent<MiniGame_DA_OtterUfo>();
 
-        timeToAppear *= timeFactor + Random.Range(-0.25f, 0.50f);
+        timeToAppear *= timeFactor * 2 + Random.Range(-0.25f, 0.50f);
+        distanceToFinish = 157;
 
         asteroids = new List<GameObject>(); // !
         asteroids.Add(asteroid1Prefab);
@@ -48,7 +55,8 @@ public class MiniGame_DodgeAsteroids : MiniGame {
         landscapes.Add(landscape2Prefab);
         landscapes.Add(landscape3Prefab);
         landscapes.Add(landscape4Prefab);
-        landscape = GameObject.Instantiate(landscapes[Random.Range(0,landscapes.Count)]);
+        //landscape = GameObject.Instantiate(landscapes[Random.Range(0,landscapes.Count)]);
+        landscape = GameObject.Instantiate(landscape0Prefab);
         landscape.transform.parent = transform;
 
         stars = new List<GameObject>();
@@ -70,6 +78,8 @@ public class MiniGame_DodgeAsteroids : MiniGame {
         mond = go;
 
         time = 0;
+        time2 = 0;
+        publicTimeFactor = timeFactor;
 
         style = GameObject.FindGameObjectWithTag("GameController").GetComponent<MainGame>().Style;
     }
@@ -84,11 +94,11 @@ public class MiniGame_DodgeAsteroids : MiniGame {
             int r = Random.Range(0, 3);
             go = GameObject.Instantiate(asteroids[r]);
             go.transform.parent = transform;
-            timeToAppear = timeFactor + Random.Range(-0.25f, 0.25f);
+            timeToAppear = timeFactor * 2 + Random.Range(-0.25f, 0.25f);
             time = 0;
         }
 
-        if (time2 > 15)
+        if (distanceToFinish <= 0)
         {
             Win();
             foreach (Transform child in transform) Destroy(child.GetComponent<GameObject>()); // Für jedes Transform item(child) in transform.
@@ -102,14 +112,26 @@ public class MiniGame_DodgeAsteroids : MiniGame {
             foreach (Transform child in transform) Destroy(child.GetComponent<GameObject>()); // Für jedes Transform item(child) in transform.
         }
 
-        landscape.transform.Translate(Vector3.left * Time.deltaTime*10);
+        //landscape.transform.Translate(Vector3.left * Time.deltaTime*10);
+        //landscape.transform.Translate(Vector3.left * 0.15f); // Landscape Schnelligkeit ( Von Timefactor abhängig machen? )
+        landscape.transform.Translate(new Vector3 (-0.15f - ((1 - timeFactor)* 0.5f), 0)); // Wieso geht das? Sollte das niht an einem Ort stehen?
         if (landscape.transform.localPosition.x <= -26)
         {
             GameObject.Destroy(landscape);
             landscape = GameObject.Instantiate(landscapes[Random.Range(0, landscapes.Count)]);
             landscape.transform.parent = transform;
         }
-        
+
+        //distanceToFinish -= 0.15f; // Wenn die Landscape, dann auch diese Zahl an den Timefactor anpassen.
+        distanceToFinish = distanceToFinish - 0.15f - ((1 - timeFactor) * 0.5f);
+        if (finish == null && distanceToFinish < 13) 
+        {
+            finish = GameObject.Instantiate(finishPrefab);
+            finish.transform.parent = transform;
+        }
+        //if (finish != null) finish.transform.Translate(Vector3.up * 0.15f); // Up, weil das Prafab um 90 Grad gedereht ist
+        if (finish != null) finish.transform.Translate(new Vector3(0, -0.15f - ((1 - timeFactor) * 0.5f)));
+
         for (int i = 0; i < stars.Count; i++)
         {
             stars[i].transform.Translate((-stars[i].transform.localScale.x * 0.01f), 0, 0); // Je größer der Stern, desto schneller soll er sich bewegen.
@@ -128,9 +150,10 @@ public class MiniGame_DodgeAsteroids : MiniGame {
             new Rect(
             Screen.width / 2 - Screen.width / 10,
             Screen.height / 40,
-            Screen.width / 5, 40),
+            Screen.width / 5, 60),
             "Leben übrig: " + ufoScript.lives.ToString() + '\n' +
-            "Zeit zum Sieg: " + Mathf.Round(15-time2).ToString(),
+            //"Zeit zum Sieg: " + Mathf.Round(15-time2).ToString() + '\n' +
+            "Distanz zum Sieg: " + Mathf.Round(distanceToFinish).ToString(),
             style);
     }
 }

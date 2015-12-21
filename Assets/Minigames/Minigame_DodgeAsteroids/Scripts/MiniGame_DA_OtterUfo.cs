@@ -35,6 +35,7 @@ public class MiniGame_DA_OtterUfo : MonoBehaviour { // FreezePositionX ist geche
                 distance = pos.y - originClick.y;
                 distance *= 3;
                 transform.localPosition = new Vector3(transform.localPosition.x, originPosition.y + distance, 0);
+                if (transform.localPosition.y > 6.2f || transform.localPosition.y < -4.0f) lives = 0; // verlieren, wenn das Ufo außerhalb des Frames ist.
             }
         }
         if (!Input.GetMouseButton(0) && firstKlick == false) firstKlick = true;

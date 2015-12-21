@@ -9,6 +9,7 @@ public class MiniGame_DA_AsteroidSlow : MonoBehaviour { // Beim Umbenennen in Un
     private float time;
     private float speed; // wie viele Sekunden braucht der Asteroid von rechts nach links
     private float rotationSpeed;
+    private float timeFactor;
 
     public GameObject brokenAsteroidPrefab;
     private GameObject asteroid;
@@ -22,9 +23,11 @@ public class MiniGame_DA_AsteroidSlow : MonoBehaviour { // Beim Umbenennen in Un
         startPosition.Set(11, startY, 0);
         targetPosition.Set(-11, endY, 0);
         transform.localPosition = startPosition;
-        speed = Random.Range(2, 4);
         rotationSpeed = Random.Range(-3, 3);
-	}
+        timeFactor = transform.parent.GetComponent<MiniGame_DodgeAsteroids>().publicTimeFactor;
+        speed = Random.Range(0.25f, 0.5f);
+        speed = speed + (1 - timeFactor);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -32,7 +35,7 @@ public class MiniGame_DA_AsteroidSlow : MonoBehaviour { // Beim Umbenennen in Un
 
         if (!destroy)
         {
-            transform.localPosition = Vector3.Lerp(startPosition, targetPosition, time / speed);
+            transform.localPosition = Vector3.Lerp(startPosition, targetPosition, time * speed);
             if (transform.localPosition == targetPosition) GameObject.Destroy(this.gameObject);
 
             rotation.Set(0, 0, transform.localEulerAngles.z + rotationSpeed);
