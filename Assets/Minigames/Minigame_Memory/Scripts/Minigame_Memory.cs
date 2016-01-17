@@ -13,7 +13,8 @@ public class Minigame_Memory : MiniGame
 
 	public int rows;
 	public int columns;
-    public float padding;
+    public float xPadding;
+    public float yPadding;
 
 	void Start()
 	{
@@ -63,8 +64,8 @@ public class Minigame_Memory : MiniGame
 			}
 			go.transform.localPosition = 
 				new Vector3(
-					-((-0.5f+(columns/2))*padding) + (j*padding),
-                    (rows/2 * padding) - (i * padding));
+                    1.9f -((columns / 2) * xPadding) + (j * xPadding),
+                    1 - ((rows / 2) * yPadding) + (i * yPadding));
 			placed++;
 		}
 	}
