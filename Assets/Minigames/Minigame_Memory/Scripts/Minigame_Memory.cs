@@ -9,14 +9,21 @@ public class Minigame_Memory : MiniGame
 	public Sprite	Kartenhintergrund;
 	public GameObject prefabKarte;
 
+    private GUIStyle style;
+
 	public int rows;
 	public int columns;
+    public float padding;
 
 	void Start()
 	{
 		Karten =
 			new List<Minigame_Memory_Karte>();
 		CreateField();
+        cardOne = null;
+        Score = 0;
+
+        style = GameObject.FindGameObjectWithTag("GameController").GetComponent<MainGame>().Style;
 	}
 
 	private void CreateField()
@@ -28,7 +35,7 @@ public class Minigame_Memory : MiniGame
 			{
 				Minigame_Memory_Karte k = 
 					GameObject.Instantiate(prefabKarte).GetComponent<Minigame_Memory_Karte>();
-				k.Create(s, Kartenhintergrund);
+				k.Create(s, Kartenhintergrund, this);
 				Karten.Add(k);
 				k.gameObject.transform.parent = transform;
 				k.gameObject.transform.localPosition = 
@@ -56,8 +63,8 @@ public class Minigame_Memory : MiniGame
 			}
 			go.transform.localPosition = 
 				new Vector3(
-					-((-0.5f+(columns/2))*2.4f) + (j*2.4f),
-					2f - (i * 2.2f));
+					-((-0.5f+(columns/2))*padding) + (j*padding),
+                    (rows/2 * padding) - (i * padding));
 			placed++;
 		}
 	}
@@ -73,4 +80,39 @@ public class Minigame_Memory : MiniGame
 		if (win)
 			Win ();
 	}
+
+    public void OnGUI()
+    {
+        GUI.Label(
+            new Rect(
+            Screen.width / 2 - Screen.width / 10,
+            Screen.height / 40,
+            Screen.width / 5, style.font.lineHeight),
+            "Pärchen gefunden " + Score.ToString() + "/" + Kartenmotive.Length,
+            style);
+    }
+
+    private Minigame_Memory_Karte cardOne;
+    public void ChoseCard(Minigame_Memory_Karte k)
+    {
+        if (cardOne == null)
+        {
+            cardOne = k;
+            return;
+        }
+        else
+        {
+            if (cardOne.Front != k.Front)
+            {
+                cardOne.Flip();
+                k.Flip();
+            }
+            else
+            {
+                Score++;
+                CheckField();
+            }
+        }
+        cardOne = null;
+    }
 }

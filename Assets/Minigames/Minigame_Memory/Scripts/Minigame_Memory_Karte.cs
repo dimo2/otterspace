@@ -5,23 +5,32 @@ public class Minigame_Memory_Karte : MonoBehaviour
 {
 	private Sprite back;
 	private Sprite front;
+    public  string Front
+    {
+        get { return front.name; }
+    }
 	private SpriteRenderer sr;
+    private Minigame_Memory mainGame;
 
 	public bool isFlipped;
 	public float flipTime;
 
-	public void Create(Sprite _f, Sprite _b)
+	public void Create(Sprite _f, Sprite _b, Minigame_Memory _m)
 	{
 		back = _b;
 		front = _f;
 
 		isFlipped = false;
 		sr = GetComponent<SpriteRenderer>();
+        mainGame = _m;
 	}
 
 	public void OnMouseDown()
 	{
-		Flip();
+        if (!isFlipped)
+        {
+            Flip();
+        }
 	}
 
 	public void Flip()
@@ -60,5 +69,8 @@ public class Minigame_Memory_Karte : MonoBehaviour
 			elapsedTime += Time.deltaTime;
 			yield return new WaitForEndOfFrame();
 		}
+        yield return new WaitForSeconds(flipTime); //kurz warten um das Motiv zu zeigen
+        if (isFlipped)
+            mainGame.ChoseCard(this);
 	}
 }
