@@ -10,8 +10,9 @@ public class Minigame_Jetpack_Otter : MonoBehaviour {
 
     private float jetpackFuel;
     private float loseFuel;
-    private float moveX;
-    private float moveY;
+    private bool originClick;
+    private Vector3 originPoint;
+    private Vector3 move;
 
     private List<GameObject> bubbles;
     public GameObject bubblePrefab;
@@ -28,8 +29,7 @@ public class Minigame_Jetpack_Otter : MonoBehaviour {
         if (timefactor > 0.4f) jetpackFuel *= timefactor;
         else jetpackFuel *= 0.4f;
         loseFuel = 0;
-        moveX = 0;
-        moveY = 0;
+        originClick = true;
 
         bubbles = new List<GameObject>();
     }
@@ -39,13 +39,21 @@ public class Minigame_Jetpack_Otter : MonoBehaviour {
 
         if (Input.GetMouseButton(0) && jetpackFuel > 0)
         {
-            moveX = (Input.mousePosition.x / Screen.width) * 2 - 1; // Mapping des Mausklicks auf eine Range von -1 bis 1. -1 ist ganz links, 1 ist ganz rechts.
-            moveY = (Input.mousePosition.y / Screen.height) * 2 - 1; // Mapping des Mausklicks auf eine Range von -1 bis 1.
-            if (moveX < 0)
-                transform.localEulerAngles = new Vector3(0, 180, moveX * 30);
-            else transform.localEulerAngles = new Vector3(0, 0, -moveX * 30);
-            //transform.Translate(moveX * Time.deltaTime, moveY * 18 * Time.deltaTime, 0);
-            transform.position += new Vector3(moveX * 22 * Time.deltaTime, moveY * 18 * Time.deltaTime, 0);
+            if (originClick == true)
+            {
+                originClick = false;
+                originPoint = new Vector3(Input.mousePosition.x / Screen.width, Input.mousePosition.y / Screen.height, 0);
+            }
+
+            move = new Vector3(Input.mousePosition.x / Screen.width, Input.mousePosition.y / Screen.height, 0) - originPoint;
+            move.x = Mathf.Clamp(move.x, -0.15f, 0.15f);
+            move.y =  Mathf.Clamp(move.y, -0.15f, 0.15f);
+            if (move.x < 0)
+            {
+                transform.localEulerAngles = new Vector3(0, 180, move.x * 130);
+            }
+            else transform.localEulerAngles = new Vector3(0, 0, -move.x * 130);
+            transform.position += new Vector3(move.x * 80 * Time.deltaTime, move.y * 80 * Time.deltaTime, 0);
             loseFuel += Time.deltaTime;
 
             bubbleTime += Time.deltaTime;
@@ -61,7 +69,8 @@ public class Minigame_Jetpack_Otter : MonoBehaviour {
 
         if (!Input.GetMouseButton(0) || jetpackFuel <= 0)
         {
-            transform.position += new Vector3(moveX * 22 * Time.deltaTime, -18 * Time.deltaTime, 0);
+            originClick = true;
+            transform.position += new Vector3(move.x * 80 * Time.deltaTime, -15 * Time.deltaTime, 0);
         }
 
         if (loseFuel >= 0.1)
@@ -96,7 +105,7 @@ public class Minigame_Jetpack_Otter : MonoBehaviour {
     {
         for (int i = 0; i < bubbles.Count; i++)
         {
-            bubbles[i].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f * jetpackFuel / 100 + 0.2f, bubbles[i].GetComponent<SpriteRenderer>().color.a - (5f - moveY*1.75f) * Time.deltaTime);
+            bubbles[i].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f * jetpackFuel / 100 + 0.2f, bubbles[i].GetComponent<SpriteRenderer>().color.a - (5f - move.y * 8f) * Time.deltaTime);
             bubbles[i].transform.localPosition += new Vector3(Random.Range(-5f, 5f) * Time.deltaTime, -25f * Time.deltaTime, 0);
             bubbles[i].transform.localScale += new Vector3(1.5f * Time.deltaTime, 1.5f * Time.deltaTime, 0);
             bubbles[i].GetComponent<SpriteRenderer>().sortingOrder = Random.Range(9, 11);
