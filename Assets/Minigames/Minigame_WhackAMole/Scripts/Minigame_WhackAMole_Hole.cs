@@ -11,13 +11,16 @@ public class Minigame_WhackAMole_Hole : MonoBehaviour
 	private int sortingOrder;
 
 	public GameObject molePrefab;
-		
-	public AudioClip squish;
+    public GameObject otterPrefab;
+
+    public AudioClip squish;
 	public AudioSource audio;
 
 	public void newMole()
 	{
-		GameObject o = GameObject.Instantiate(molePrefab);
+        GameObject o;
+        if (Random.Range(0f, 10f) > 8f && GameObject.Find("151122_WhackAMole_Otter(Clone)") == null) o = GameObject.Instantiate(otterPrefab);
+        else o = GameObject.Instantiate(molePrefab);
 		o.transform.parent = transform;
 		o.transform.localPosition =
 			new Vector3(0,-1.2f,0);
@@ -31,6 +34,7 @@ public class Minigame_WhackAMole_Hole : MonoBehaviour
 
 	public void Clicked()
 	{
+        if (m.gameObject.name.Contains("Otter")) Lost();
 		GameObject.Destroy(m.gameObject);
 		taken = false;
 		score ++;

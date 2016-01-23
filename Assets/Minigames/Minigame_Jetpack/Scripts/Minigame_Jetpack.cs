@@ -36,7 +36,7 @@ public class Minigame_Jetpack : MiniGame
         Ufo = GameObject.Instantiate(ufoPrefab);
         Ufo.transform.parent = transform;
         if (Random.Range(-1f, 1f) < 0) Ufo.transform.position = new Vector3(-22f, 23, 0);
-        else Ufo.transform.position = new Vector3(-20.5f, 23, 0);
+        else Ufo.transform.position = new Vector3(20.5f, 23, 0);
         Ufo.layer = LayerMask.NameToLayer("Ignore Raycast");
         smallUfo = GameObject.Instantiate(ufoPrefab);
         smallUfo.transform.parent = transform.FindChild("Navigation").transform;

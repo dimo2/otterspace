@@ -19,19 +19,27 @@ public class Minigame_Jetpack_Otter : MonoBehaviour {
     private GameObject bubble;
     private float bubbleTime;
 
+    public Sprite threeLives;
+    public Sprite twoLives;
+    public Sprite oneLive;
+    private SpriteRenderer spriteRenderer;
+
     // Use this for initialization
     void Start () {
 
         timefactor = transform.parent.GetComponent<Minigame_Jetpack>().publicTimeFactor;
 
         lives = 3;
-        jetpackFuel = 100;
+        jetpackFuel = 150;
         if (timefactor > 0.4f) jetpackFuel *= timefactor;
         else jetpackFuel *= 0.4f;
         loseFuel = 0;
         originClick = true;
 
         bubbles = new List<GameObject>();
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = threeLives;
     }
 	
 	// Update is called once per frame
@@ -46,14 +54,15 @@ public class Minigame_Jetpack_Otter : MonoBehaviour {
             }
 
             move = new Vector3(Input.mousePosition.x / Screen.width, Input.mousePosition.y / Screen.height, 0) - originPoint;
-            move.x = Mathf.Clamp(move.x, -0.15f, 0.15f);
-            move.y =  Mathf.Clamp(move.y, -0.15f, 0.15f);
+            move.x = Mathf.Clamp(move.x, -0.1f, 0.1f);
+            move.y =  Mathf.Clamp(move.y, -0.1f, 0.1f);
+            Debug.Log(move);
             if (move.x < 0)
             {
-                transform.localEulerAngles = new Vector3(0, 180, move.x * 130);
+                transform.localEulerAngles = new Vector3(0, 180, move.x * 150);
             }
-            else transform.localEulerAngles = new Vector3(0, 0, -move.x * 130);
-            transform.position += new Vector3(move.x * 80 * Time.deltaTime, move.y * 80 * Time.deltaTime, 0);
+            else transform.localEulerAngles = new Vector3(0, 0, -move.x * 150);
+            transform.position += new Vector3(move.x * 95 * Time.deltaTime, move.y * 95 * Time.deltaTime, 0);
             loseFuel += Time.deltaTime;
 
             bubbleTime += Time.deltaTime;
@@ -70,7 +79,7 @@ public class Minigame_Jetpack_Otter : MonoBehaviour {
         if (!Input.GetMouseButton(0) || jetpackFuel <= 0)
         {
             originClick = true;
-            transform.position += new Vector3(move.x * 80 * Time.deltaTime, -15 * Time.deltaTime, 0);
+            transform.position += new Vector3(move.x * 90 * Time.deltaTime, -11 * Time.deltaTime, 0);
         }
 
         if (loseFuel >= 0.1)
@@ -98,7 +107,11 @@ public class Minigame_Jetpack_Otter : MonoBehaviour {
         }
 
         if (!col.gameObject.name.Contains("Camera"))
+        {
             lives -= 1;
+            if (lives == 2) spriteRenderer.sprite = twoLives;
+            else if (lives == 1) spriteRenderer.sprite = oneLive;
+        }
     }
 
     void moveBubbles()

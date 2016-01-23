@@ -36,7 +36,7 @@ public class Minigame_WhackAMole_Mole : MonoBehaviour
 		}
 		if (time >= down+up)
 		{
-			hole.Lost();
+			if (gameObject.name.Contains("WhackAMole_Mole")) hole.Lost();
 			GameObject.Destroy(this.gameObject);
 		}
 

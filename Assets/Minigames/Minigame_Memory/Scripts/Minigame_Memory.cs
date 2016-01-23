@@ -12,27 +12,66 @@ public class Minigame_Memory : MiniGame
     private GUIStyle style;
 
 	public int rows;
-	public int columns;
+	public int columns; 
     public float xPadding;
     public float yPadding;
 
+    private int lives;
+    private Vector2 translate;
+    private bool showingCards;
+
 	void Start()
 	{
-		Karten =
+        if (timeFactor > 0.75f)
+        {
+            rows = 2;
+            columns = 3;
+        }
+        if (timeFactor <= 0.75f)
+        {
+            rows = 2;
+            columns = 4;
+        }
+        if (timeFactor <= 0.5f)
+        {
+            rows = 3;
+            columns = 4;
+        }
+        if (timeFactor <= 0.25f)
+        {
+            rows = 4;
+            columns = 4;
+        }
+
+        Karten =
 			new List<Minigame_Memory_Karte>();
 		CreateField();
         cardOne = null;
-        Score = 0;
+        Score = 0; 
 
         style = GameObject.FindGameObjectWithTag("GameController").GetComponent<MainGame>().Style;
+
+        lives = 3;
+        translate = new Vector2(0,0);
+        showingCards = true;
+
+        StartCoroutine(ShowAll());
 	}
 
 	private void CreateField()
 	{
+        int chooseSprite;
+        List<int> spriteTaken = new List<int>();
+        Sprite s;
 		//erstellt für jede Grafik 2 Karten
-		foreach (Sprite s in Kartenmotive)
+        for (int i = 0; i < (rows*columns)/2; i++)
 		{
-			for (int i=0; i < 2; i++)
+            chooseSprite = Random.Range(0, Kartenmotive.Length);
+            while (spriteTaken.Contains(chooseSprite)) chooseSprite = Random.Range(0, Kartenmotive.Length);
+            s = Kartenmotive[chooseSprite];
+            spriteTaken.Add(chooseSprite);
+
+            for (int j=0; j < 2; j++)
 			{
 				Minigame_Memory_Karte k = 
 					GameObject.Instantiate(prefabKarte).GetComponent<Minigame_Memory_Karte>();
@@ -55,7 +94,7 @@ public class Minigame_Memory : MiniGame
 			if (placed >= Karten.Count)
 				return;
 			GameObject go;
-			for(;;)
+			for(;;) // nächste Karte wird zufällig ausgewählt
 			{
 				int r = Random.Range(0,Karten.Count);
 				go = Karten[r].gameObject;
@@ -67,10 +106,32 @@ public class Minigame_Memory : MiniGame
                     1.9f -((columns / 2) * xPadding) + (j * xPadding),
                     1 - ((rows / 2) * yPadding) + (i * yPadding));
 			placed++;
+            translate.x += go.transform.localPosition.x;
+            translate.y += go.transform.localPosition.y;
 		}
+        translate /= Karten.Count;
+        for (int i = 0; i < Karten.Count; i++) // Karten zentrieren
+            Karten[i].transform.Translate(-translate.x, -translate.y, 0);
 	}
 
-	private void CheckField()
+    private IEnumerator ShowAll()
+    {
+        for (int i = 0; i < Karten.Count; i++)
+        {
+            Karten[i].Flip();
+        }
+
+        yield return new WaitForSeconds(2);
+
+        for (int i = 0; i < Karten.Count; i++)
+        {
+            Karten[i].Flip();
+        }
+        showingCards = false;
+
+    }
+
+    private void CheckField()
 	{
 		bool win = true;
 		for (int i = 0; i < Karten.Count; i++)
@@ -78,7 +139,7 @@ public class Minigame_Memory : MiniGame
 			if (!Karten[i].isFlipped)
 				win = false;
 		}
-		if (win)
+		if (win && !showingCards)
 			Win ();
 	}
 
@@ -88,8 +149,9 @@ public class Minigame_Memory : MiniGame
             new Rect(
             Screen.width / 2 - Screen.width / 10,
             Screen.height / 40,
-            Screen.width / 5, style.font.lineHeight),
-            "Pärchen gefunden " + Score.ToString() + "/" + Kartenmotive.Length,
+            Screen.width / 5, 40), // style.font.lineHeight ergibt bei mir eine Null Reference Exeption
+            "Pärchen gefunden " + Score.ToString() + "/" + (rows*columns)/2 + '\n' + 
+            "Leben: " + lives.ToString(),
             style);
     }
 
@@ -107,10 +169,12 @@ public class Minigame_Memory : MiniGame
             {
                 cardOne.Flip();
                 k.Flip();
+                lives -= 1;
+                if (lives == 0) Lose();
             }
             else
             {
-                Score++;
+                if (!showingCards) Score++;
                 CheckField();
             }
         }
