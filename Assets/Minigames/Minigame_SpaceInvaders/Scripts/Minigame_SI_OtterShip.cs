@@ -6,9 +6,9 @@ public class Minigame_SI_OtterShip : MonoBehaviour {
 	public bool otterdead = false;
     public float SIlive = 3.0f;
 
-	private float speed = 10f;
-	private float minX = -7.7f;
-	private float maxX = 8.0f;
+	private float speed = 5f;
+	public float minX = -7.7f;
+	public float maxX = 8.0f;
 	public float leben = 3.0f;
     public GameObject bullet;
     public GameObject firingPoint;
@@ -27,7 +27,7 @@ public class Minigame_SI_OtterShip : MonoBehaviour {
     void Update() {
 
 		if (leben <= 0) {
-			Destroy (this.gameObject);
+			//Destroy (this.gameObject);
 			otterdead = true;
 		
 		}

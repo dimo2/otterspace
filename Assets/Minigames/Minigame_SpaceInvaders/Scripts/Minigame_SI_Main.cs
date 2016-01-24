@@ -15,16 +15,16 @@ public class Minigame_SI_Main : MiniGame {
     void Start () {
         SIscore = 0f;
         style = GameObject.FindGameObjectWithTag("GameController").GetComponent<MainGame>().Style;
-		//ottership = GetComponent<MiniGame_DA_OtterUfo>();
-		aliens = GetComponent<Minigame_SI_randomshot>();
+
     }
 	
 	// Update is called once per frame
 	void Update () {
+
 		if (ottership.leben <= 0)
 		{
 			Lose();
-			foreach (Transform child in transform) Destroy(child.GetComponent<GameObject>()); // Für jedes Transform item(child) in transform.
+			Destroy (this.gameObject);
 		}
 		if (aliens.alldead <= 0)
 		{

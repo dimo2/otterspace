@@ -10,7 +10,7 @@ public class Minigame_SI_Alienshot : MonoBehaviour {
 		Vector3 zPosition = transform.position;
 		zPosition.z = 0;
 		transform.position = zPosition;
-
+		transform.rotation = Quaternion.identity;
 	}
 	// Update is called once per frame
 	void Update () {
