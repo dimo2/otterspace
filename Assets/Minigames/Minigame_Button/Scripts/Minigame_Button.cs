@@ -23,14 +23,7 @@ public class Minigame_Button : MiniGame {
 	
 	// Update is called once per frame
 	void Update () {
-//		Minigame_Button_Win winscript = WinButton.GetComponent<Minigame_Button_Win>();
         time2 += Time.deltaTime;
-		if (time2 >= 10) 
-		{
-			Lose ();
-			foreach (Transform child in transform) Destroy(child.GetComponent<GameObject>()); // Für jedes Transform item(child) in transform.
-		}
-
     }
 
 
@@ -52,7 +45,7 @@ public class Minigame_Button : MiniGame {
             Screen.height / 40,
             Screen.width / 5, 40),
            // "Leben übrig: " + ufoScript.lives.ToString() + '\n' +
-            "Zeit bis Tod: " + Mathf.Round(10 - time2).ToString(),
+            "Zeit bis Tod: " + Mathf.Round(15 - time2).ToString(),
             style);
     }
 }
