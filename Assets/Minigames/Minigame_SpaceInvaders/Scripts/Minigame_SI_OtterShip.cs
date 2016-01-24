@@ -3,27 +3,34 @@ using System.Collections;
 
 
 public class Minigame_SI_OtterShip : MonoBehaviour {
-
+	public bool otterdead = false;
     public float SIlive = 3.0f;
 
 	private float speed = 10f;
-    public float minX = -7.7f;
-	public float maxX = 8.0f;
+	private float minX = -7.7f;
+	private float maxX = 8.0f;
+	public float leben = 3.0f;
     public GameObject bullet;
     public GameObject firingPoint;
 
-    // fire cooldown timer
-    public float fireCooldownTime = 1.0f;
-    float _fireCooldown = 0.0f;
+    
 
     // Use this for initialization
     void Start () {
+		leben = 3.0f;
+		otterdead = false;
         //Assets/Minigames/Minigame_SpaceInvaders bullet =(GameObject)Resources.Load("../Sprites/bullet");
     }
 
     // Update is called once per frame
 
     void Update() {
+
+		if (leben <= 0) {
+			Destroy (this.gameObject);
+			otterdead = true;
+		
+		}
 
 		if (Application.isEditor) {
 			Vector3 newPosition = transform.position;
@@ -58,12 +65,23 @@ public class Minigame_SI_OtterShip : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.Space))
             {
             Instantiate(bullet, firingPoint.transform.position, Quaternion.identity);
-            _fireCooldown = fireCooldownTime; ;
+            
             }
+
+
         }
    
 
+	void OnCollisionEnter2D(Collision2D col)
+	{
+		
+		if (col.gameObject.tag.Contains("Otter")) {
+			Destroy(col.gameObject);
+			leben--;
 
+		}
+
+	}
 
 
 
