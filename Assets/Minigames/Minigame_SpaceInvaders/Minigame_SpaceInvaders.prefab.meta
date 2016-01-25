@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream:Assets/Minigames/Minigame_SpaceInvaders/Minigame_SpaceInvaders.prefab.meta
 guid: 8abef91955c36a44aad1378ec3e0c60b
 timeCreated: 1453679035
+=======
+guid: a6d333aed47a542b0abb722e58bbe72c
+timeCreated: 1449435197
+>>>>>>> Stashed changes:Assets/Minigames/Minigame_SpaceInvaders/Animations/UfoAnimation.anim.meta
 licenseType: Free
 NativeFormatImporter:
   userData: 

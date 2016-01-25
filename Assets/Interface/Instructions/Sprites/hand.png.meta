@@ -1,9 +1,12 @@
 fileFormatVersion: 2
-guid: cc2480d95ca45484dba56a32ed061247
-timeCreated: 1453475682
+guid: 0ffc94c8b83b94b39bae65e989f4a798
+timeCreated: 1453646760
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: hand_0
+    21300002: hand_1
+    21300004: hand_2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -38,7 +41,7 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -49,7 +52,37 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: hand_0
+      rect:
+        serializedVersion: 2
+        x: 1422
+        y: 1101
+        width: 1686
+        height: 2519
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hand_1
+      rect:
+        serializedVersion: 2
+        x: 3293
+        y: 3433
+        width: 503
+        height: 471
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hand_2
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 1438
+        width: 325
+        height: 1691
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
   assetBundleName: 

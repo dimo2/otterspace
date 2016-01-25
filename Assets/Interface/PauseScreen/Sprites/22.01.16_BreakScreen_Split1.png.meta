@@ -1,0 +1,166 @@
+fileFormatVersion: 2
+guid: 1c35e9ea1b2044d2eac58c16b8212b1e
+timeCreated: 1453489353
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: 22.01.16_BreakScreen_Split1_0
+    21300002: 22.01.16_BreakScreen_Split1_1
+    21300004: 22.01.16_BreakScreen_Split1_2
+    21300006: 22.01.16_BreakScreen_Split1_3
+    21300008: 22.01.16_BreakScreen_Split1_4
+    21300010: 22.01.16_BreakScreen_Split1_5
+    21300012: 22.01.16_BreakScreen_Split1_6
+    21300014: 22.01.16_BreakScreen_Split1_7
+    21300016: 22.01.16_BreakScreen_Split1_8
+    21300018: 22.01.16_BreakScreen_Split1_9
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 4096
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: 22.01.16_BreakScreen_Split1_0
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 2063
+        width: 331
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 22.01.16_BreakScreen_Split1_1
+      rect:
+        serializedVersion: 2
+        x: 818
+        y: 1091
+        width: 1175
+        height: 1147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 22.01.16_BreakScreen_Split1_2
+      rect:
+        serializedVersion: 2
+        x: 1741
+        y: 2215
+        width: 326
+        height: 167
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 22.01.16_BreakScreen_Split1_3
+      rect:
+        serializedVersion: 2
+        x: 2102
+        y: 1827
+        width: 235
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 22.01.16_BreakScreen_Split1_4
+      rect:
+        serializedVersion: 2
+        x: 2691
+        y: 1434
+        width: 639
+        height: 747
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 22.01.16_BreakScreen_Split1_5
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 628
+        width: 603
+        height: 922
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 22.01.16_BreakScreen_Split1_6
+      rect:
+        serializedVersion: 2
+        x: 709
+        y: 144
+        width: 5
+        height: 786
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 22.01.16_BreakScreen_Split1_7
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 57
+        width: 675
+        height: 659
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 22.01.16_BreakScreen_Split1_8
+      rect:
+        serializedVersion: 2
+        x: 1735
+        y: 551
+        width: 897
+        height: 561
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 22.01.16_BreakScreen_Split1_9
+      rect:
+        serializedVersion: 2
+        x: 2750
+        y: 240
+        width: 424
+        height: 947
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
