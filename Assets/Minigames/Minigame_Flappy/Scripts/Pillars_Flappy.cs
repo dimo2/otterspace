@@ -35,12 +35,14 @@ public class Pillars_Flappy : MiniGame {
 
     public void OnGUI()
     {
+		/*
         GUI.Label(
             new Rect(
             Screen.width / 2 - Screen.width / 10,
             Screen.height / 40,
             Screen.width / 5, 60),
             "Punkte: " + score);
+            */
     }
 
     void Update()
