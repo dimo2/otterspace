@@ -24,7 +24,7 @@ public class showLives : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void LateUpdate () {
 		x = 18.0f;
 
 		for (int i=0; i<life.Length; i++) {

@@ -13,7 +13,7 @@ public class PauseButton : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void LateUpdate () {
 		screenPos = Camera.main.ScreenToWorldPoint (new Vector3(Screen.width/8,Camera.main.pixelHeight-Screen.height/9,0));
 		screenPos.z = 0;
 		transform.position = screenPos;
