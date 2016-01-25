@@ -143,17 +143,21 @@ public class Minigame_Memory : MiniGame
 			Win ();
 	}
 
+	/*
     public void OnGUI()
     {
-        GUI.Label(
-            new Rect(
+		if (Time.timeScale == 1) {
+			GUI.Label (
+            new Rect (
             Screen.width / 2 - Screen.width / 10,
             Screen.height / 40,
             Screen.width / 5, 40), // style.font.lineHeight ergibt bei mir eine Null Reference Exeption
-            "Pärchen gefunden " + Score.ToString() + "/" + (rows*columns)/2 + '\n' + 
-            "Leben: " + lives.ToString(),
+            "Pärchen gefunden " + Score.ToString () + "/" + (rows * columns) / 2 + '\n' + 
+				"Leben: " + lives.ToString (),
             style);
+		}
     }
+    */
 
     private Minigame_Memory_Karte cardOne;
     public void ChoseCard(Minigame_Memory_Karte k)

@@ -144,16 +144,18 @@ public class MiniGame_DodgeAsteroids : MiniGame {
         mond.transform.localEulerAngles = new Vector3(0, 0, mond.transform.localEulerAngles.z + 0.017f); //.localEulerAngles.Set geht nicht!!
     }
 
-    public void OnGUI()
+   /* public void OnGUI()
     {
-        GUI.Label(
-            new Rect(
+		if (Time.timeScale == 1) {
+			GUI.Label (
+            new Rect (
             Screen.width / 2 - Screen.width / 10,
             Screen.height / 40,
             Screen.width / 5, 60),
-            "Leben übrig: " + ufoScript.lives.ToString() + '\n' +
-            //"Zeit zum Sieg: " + Mathf.Round(15-time2).ToString() + '\n' +
-            "Distanz zum Sieg: " + Mathf.Round(distanceToFinish).ToString(),
+            "Leben übrig: " + ufoScript.lives.ToString () + '\n' +
+			//"Zeit zum Sieg: " + Mathf.Round(15-time2).ToString() + '\n' +
+				"Distanz zum Sieg: " + Mathf.Round (distanceToFinish).ToString (),
             style);
-    }
+		}
+    } */
 }

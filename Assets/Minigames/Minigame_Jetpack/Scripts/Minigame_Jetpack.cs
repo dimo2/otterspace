@@ -101,7 +101,16 @@ public class Minigame_Jetpack : MiniGame
             return;
         }
 
-        Camera.transform.position = Otter.transform.position + cameraOffset;
+		print (transform.GetComponentInChildren<PauseButton> ().isPaused);
+		// Kamera-Verhalten
+		if (transform.GetComponentInChildren<PauseButton>().isPaused == false &&
+		    !transform.FindChild("Instructions")) {
+			Camera.transform.position = Otter.transform.position + cameraOffset;
+		}
+
+
+
+
         transform.FindChild("StarsBig").transform.position = new Vector3(Otter.transform.position.x - Otter.transform.position.x / 10, Otter.transform.position.y - Otter.transform.position.y / 16, 0);
         transform.FindChild("StarsMiddle").transform.position = new Vector3(Otter.transform.position.x - Otter.transform.position.x / 10, Otter.transform.position.y - Otter.transform.position.y / 18, 0);
         transform.FindChild("StarsSmall").transform.position = new Vector3(Otter.transform.position.x - Otter.transform.position.x / 10, Otter.transform.position.y - Otter.transform.position.y / 20, 0);

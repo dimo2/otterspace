@@ -61,6 +61,7 @@ public class UFOMovement : MonoBehaviour
 
 	void OnMouseDown()
 	{
+		Destroy(GameObject.FindGameObjectWithTag("Prefs"));
 		GameObject.FindGameObjectWithTag("GameController").GetComponent<MainGame>().StartGame();
 	}
 }

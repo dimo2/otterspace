@@ -6,7 +6,7 @@ public class MainGame : MonoBehaviour
 	public 	GameObject GamePrefab;
 	public	GameObject menuScreen;
 	private bool GameIsRunning;
-	private float score;
+	public float score;
 	private	GUIStyle style;
 	public	GUIStyle Style
 	{
@@ -20,6 +20,8 @@ public class MainGame : MonoBehaviour
 		style = new GUIStyle("label");
 		style.alignment = TextAnchor.MiddleCenter;
 		style.normal.textColor = Color.white;
+		style.font = (Font)Resources.Load("Iceland-Regular");
+		style.fontSize = 30;
 		score = 0;
 	}
 
@@ -27,13 +29,15 @@ public class MainGame : MonoBehaviour
 	{
 		if (!GameIsRunning)
 		{
+			/*
 			GUI.Label(
 				new Rect(
 				Screen.width/2 - Screen.width/10, 
 				Screen.height/40,
-				Screen.width/5, style.font.lineHeight),
+				Screen.width/5, 40),
 				"HIGHSCORE: " + score.ToString(),
 				style);
+				*/
 		}
 	}
 

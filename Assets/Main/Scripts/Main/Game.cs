@@ -4,8 +4,7 @@ using System.Collections.Generic;
 
 public class Game : MonoBehaviour 
 {
-	private float 	score;
-	private int 	life;
+	public float 	score;
 	private float	timeFactor;
 	private int		gamesCompleted;
 
@@ -17,6 +16,9 @@ public class Game : MonoBehaviour
 	private State state;
 	private float waitTime;
 	public	float timeToWait;
+	public int 	life;
+
+	public AudioClip music;
 	
 	public void Start()
 	{
@@ -28,6 +30,7 @@ public class Game : MonoBehaviour
 		timeToWait = 2.5f;
 
 		mg = GameObject.FindGameObjectWithTag("GameController").GetComponent<MainGame>();
+		gameObject.tag = "Game";
 	}
 	 
 	private MiniGame GetGame()
@@ -39,6 +42,7 @@ public class Game : MonoBehaviour
 
 	private void Update()
 	{
+
 		switch (state)
 		{
 		case State.WAITING:
@@ -50,6 +54,7 @@ public class Game : MonoBehaviour
 		case State.LOADING:
 			g = GetGame();
 			g.StartGame(timeFactor);
+			addAudio();
 			state = State.RUNNING;
 			break;
 
@@ -109,10 +114,15 @@ public class Game : MonoBehaviour
 
 	private string GetInformation()
 	{
-		string s = "Punktzahl: " + score + "\n";
-		s += life + "/3 Leben\n";
-		s += gamesCompleted + " Games beendet\n\n";
-		s += "Nächstes Spiel in " + (timeToWait-waitTime).ToString("N0");
+		string s = gamesCompleted + " Games beendet";
 		return s;
+	}
+
+
+	private void addAudio() {
+		AudioSource audioSource = g.gameObject.AddComponent<AudioSource>();
+		audioSource.clip = music;
+		audioSource.loop = true;
+		audioSource.Play ();
 	}
 }

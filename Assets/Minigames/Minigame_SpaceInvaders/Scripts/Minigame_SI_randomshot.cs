@@ -5,15 +5,17 @@ public class Minigame_SI_randomshot : MonoBehaviour {
 	public float alldead = 1f;
     public float cooldown;
     private float dTime;
+	public bool won;
 	public GameObject alienshot;
 	// Use this for initialization
 	void Start () 
     {
+		won = false;
         dTime = 0f;
 		cooldown = 2f;
 		alldead = 1f;
         //cooldown eventuell mit Time Factor verknüpfen hier?
-        //cooldown *= timeFactor;
+        cooldown *= transform.GetComponentInParent<Minigame_SI_Main>().tF;
 	}
 	
 	// Update is called once per frame
@@ -25,8 +27,13 @@ public class Minigame_SI_randomshot : MonoBehaviour {
             dTime = 0f;
             Transform attackOrigin = 
                 RandomInvader();
-			Instantiate(alienshot, attackOrigin.transform.position, Quaternion.identity);
+			GameObject shot = (GameObject)Instantiate(alienshot, attackOrigin.transform.position, Quaternion.identity);
+			shot.transform.parent = GameObject.Find ("Minigame_SpaceInvaders(Clone)").transform;
+
         }
+
+		if (GameObject.FindGameObjectsWithTag ("Gegner").Length == 0)
+			won = true;
 	}
     
     Transform RandomInvader() 
@@ -34,6 +41,7 @@ public class Minigame_SI_randomshot : MonoBehaviour {
         GameObject[] allInvaders = GameObject.FindGameObjectsWithTag("Gegner");
 		if (allInvaders.Length == 0f) {
 			alldead -= 1f;
+			print (alldead);
 			return null;
 		} else {
 			return allInvaders[Random.Range(0, allInvaders.Length-1)].transform;

@@ -1,18 +1,19 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
 
 public class Minigame_SI_Main : MiniGame {
-
-    public Minigame_SI_OtterShip ottership;
-	public Minigame_SI_randomshot aliens;
+	
+	private int leben;
     public float SIscore;
 
     private GUIStyle style;
+	public float tF;
 
     // Use this for initialization
     void Start () {
+		tF = timeFactor;
         SIscore = 0f;
         style = GameObject.FindGameObjectWithTag("GameController").GetComponent<MainGame>().Style;
 
@@ -21,18 +22,21 @@ public class Minigame_SI_Main : MiniGame {
 	// Update is called once per frame
 	void Update () {
 
-		if (ottership.leben <= 0)
+		leben = transform.GetComponentInChildren<Minigame_SI_OtterShip> ().leben;
+
+		if (transform.GetComponentInChildren<Minigame_SI_OtterShip>().otterdead)
 		{
 			Lose();
-			Destroy (this.gameObject);
 		}
-		if (aliens.alldead <= 0)
-		{
-			Win();
-			foreach (Transform child in transform) Destroy(child.GetComponent<GameObject>()); // Für jedes Transform item(child) in transform.
+
+
+		if (transform.GetComponentInChildren<Minigame_SI_randomshot> ().won) {
+			Win ();
+			Score += 30.0f;
 		}
 	}
 
+/*
     public void OnGUI()
     {
         GUI.Label(
@@ -40,10 +44,10 @@ public class Minigame_SI_Main : MiniGame {
             Screen.width / 2 - Screen.width / 10,
             Screen.height / 40,
             Screen.width / 5, 40),
-            "Leben übrig: " + ottership.leben.ToString() + '\n' +
-            "Punkte: " + SIscore.ToString(),
+            "Leben übrig: " + leben.ToString(),
             style);
     }
-
+    
+*/
 
 }

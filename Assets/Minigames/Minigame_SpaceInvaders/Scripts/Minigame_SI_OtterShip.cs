@@ -6,10 +6,12 @@ public class Minigame_SI_OtterShip : MonoBehaviour {
 	public bool otterdead = false;
     public float SIlive = 3.0f;
 
+
 	private float speed = 5f;
 	public float minX = -7.7f;
 	public float maxX = 8.0f;
-	public float leben = 3.0f;
+	public int leben;
+
     public GameObject bullet;
     public GameObject firingPoint;
 
@@ -17,7 +19,7 @@ public class Minigame_SI_OtterShip : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		leben = 3.0f;
+		leben = 1;
 		otterdead = false;
         //Assets/Minigames/Minigame_SpaceInvaders bullet =(GameObject)Resources.Load("../Sprites/bullet");
     }
@@ -27,7 +29,7 @@ public class Minigame_SI_OtterShip : MonoBehaviour {
     void Update() {
 
 		if (leben <= 0) {
-			//Destroy (this.gameObject);
+
 			otterdead = true;
 		
 		}
@@ -62,9 +64,10 @@ public class Minigame_SI_OtterShip : MonoBehaviour {
 
     
             
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetMouseButtonDown(0))
             {
-            Instantiate(bullet, firingPoint.transform.position, Quaternion.identity);
+            GameObject shot = (GameObject)Instantiate(bullet, firingPoint.transform.position, Quaternion.identity);
+			shot.transform.parent = GameObject.Find ("Minigame_SpaceInvaders(Clone)").transform;
             
             }
 
@@ -76,7 +79,7 @@ public class Minigame_SI_OtterShip : MonoBehaviour {
 	{
 		
 		if (col.gameObject.tag.Contains("Otter")) {
-			Destroy(col.gameObject);
+			// Destroy(col.gameObject);
 			leben--;
 
 		}

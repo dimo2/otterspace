@@ -42,4 +42,5 @@ public class MiniGame : MonoBehaviour
 	{
 		state = State.LOST;
 	}
+	
 }

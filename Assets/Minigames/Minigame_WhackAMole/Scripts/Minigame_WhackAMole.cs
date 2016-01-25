@@ -43,16 +43,20 @@ public class Minigame_WhackAMole : MiniGame
 			Win();
 	}
 
+
 	public void OnGUI()
 	{
-		GUI.Label(
-			new Rect(
-			Screen.width/2 - Screen.width/10, 
-			Screen.height/40,
-			Screen.width/5, style.font.lineHeight),
-			"Aliens gerettet " + Score.ToString() + "/" + aliensToWin,
+		if (Time.timeScale == 1) {
+			GUI.Label (
+			new Rect (
+			Screen.width / 2 - Screen.width / 10, 
+			Screen.height / 40,
+			Screen.width / 5, 40),
+			Score.ToString () + "/" + aliensToWin,
 			style);
+		}
 	}
+
 
 	private void CreateMap()
 	{
