@@ -8,17 +8,14 @@ public class Pause_Highscore : MonoBehaviour {
 	private float myHighscore;
 	private Game g;
 	private MainGame mg;
-	private GUIStyle style2;
 
 	// Use this for initialization
 	void Start () {
 	 style = GameObject.FindGameObjectWithTag("GameController").GetComponent<MainGame>().Style;
-		style.fontSize = 30;
 
 
 		g = GameObject.FindGameObjectWithTag ("Game").GetComponent<Game> ();
 		mg = GameObject.FindGameObjectWithTag ("GameController").GetComponent<MainGame> ();
-		setStyle ();
 
 	}
 	
@@ -53,18 +50,12 @@ public class Pause_Highscore : MonoBehaviour {
 		GUI.Label(score, g.score.ToString(), style);
 
 		text2.center = new Vector2 (Screen.width/2 - Screen.width/15, Screen.height/2+Screen.height/6);
-		GUI.Label(text2, t2, style2);
+		GUI.Label(text2, t2, style);
 
 		highscore.center = new Vector2 (Screen.width/2 - Screen.width/15, Screen.height/2+Screen.height/4);
 		GUI.Label(highscore, mg.score.ToString(), style);
 			
 	}
 
-	private void setStyle() {
-		style2 = new GUIStyle("label");
-		style2.alignment = TextAnchor.MiddleCenter;
-		style2.normal.textColor = Color.white;
-		style2.font = (Font)Resources.Load("Iceland-Regular");
-		style2.fontSize = 25;
-	}
+
 }

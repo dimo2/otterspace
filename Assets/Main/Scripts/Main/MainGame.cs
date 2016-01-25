@@ -23,7 +23,7 @@ public class MainGame : MonoBehaviour
 		style.alignment = TextAnchor.MiddleCenter;
 		style.normal.textColor = Color.white;
 		style.font = (Font)Resources.Load("Iceland-Regular");
-		style.fontSize = 60;
+		style.fontSize = 80;
 		score = 0;
 	}
 
