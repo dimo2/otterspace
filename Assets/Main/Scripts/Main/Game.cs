@@ -31,6 +31,8 @@ public class Game : MonoBehaviour
 
 		mg = GameObject.FindGameObjectWithTag("GameController").GetComponent<MainGame>();
 		gameObject.tag = "Game";
+
+
 	}
 	 
 	private MiniGame GetGame()
@@ -42,6 +44,7 @@ public class Game : MonoBehaviour
 
 	private void Update()
 	{
+		AudioSource audio = GetComponent<AudioSource> ();
 
 		switch (state)
 		{
@@ -69,6 +72,7 @@ public class Game : MonoBehaviour
 				CalculateTimeFactor();
 				g.Destroy();
 				g = null;
+				audio.Play ();
 				state = State.WAITING;
 				waitTime = 0;
 				break;
@@ -78,6 +82,7 @@ public class Game : MonoBehaviour
 					GameOver();
 				g.Destroy();
 				g = null;
+				audio.Play ();
 				state = State.WAITING;
 				waitTime = 0;
 				break;

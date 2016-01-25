@@ -5,8 +5,10 @@ public class MainGame : MonoBehaviour
 {
 	public 	GameObject GamePrefab;
 	public	GameObject menuScreen;
+	public  GameObject scoreScreen;
 	private bool GameIsRunning;
 	public float score;
+	public bool isHighscore;
 	private	GUIStyle style;
 	public	GUIStyle Style
 	{
@@ -42,7 +44,7 @@ public class MainGame : MonoBehaviour
 	}
 
 	public void StartGame()
-	{
+	{;
 		GameObject.Instantiate(GamePrefab);
 		GameIsRunning = true;
 
@@ -52,14 +54,16 @@ public class MainGame : MonoBehaviour
 	public void EndGame(float newScore)
 	{
 		GameIsRunning = false;
+		Instantiate (scoreScreen);
 		Highscore(newScore);
-
 		menuScreen.SetActive(true);
 	}
 
 	private void Highscore(float newScore)
 	{
-		if (newScore > score)
+		if (newScore > score) {
 			score = newScore;
+			isHighscore = true;
+		}
 	}
 }
