@@ -7,6 +7,7 @@ public class Game : MonoBehaviour
 	public float 	score;
 	private float	timeFactor;
 	private int		gamesCompleted;
+    private int     lastGame;
 
 	public 	List<GameObject> games;
 	private MiniGame g; //Aktuelles Minigame
@@ -28,16 +29,22 @@ public class Game : MonoBehaviour
 		timeFactor = 1;
 		gamesCompleted = 0;
 		timeToWait = 2.5f;
+        lastGame = -1;
 
 		mg = GameObject.FindGameObjectWithTag("GameController").GetComponent<MainGame>();
 		gameObject.tag = "Game";
-
-
 	}
 	 
 	private MiniGame GetGame()
 	{
-		int r = Random.Range(0, games.Count);
+        int r;
+        for (;;)
+        {
+            r = Random.Range(0, games.Count);
+            if (r != lastGame)
+                break;
+        }
+        lastGame = r;
 		GameObject g = GameObject.Instantiate(games[r]);
 		return g.GetComponent<MiniGame>();
 	}
