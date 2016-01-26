@@ -13,6 +13,8 @@ public class ScoreScreen : MonoBehaviour {
 		g = GameObject.FindGameObjectWithTag ("Game").GetComponent<Game> ();
 		mg = GameObject.FindGameObjectWithTag ("GameController").GetComponent<MainGame> ();
 
+		transform.GetComponentInChildren<Canvas> ().worldCamera = Camera.main;
+
 		showScore ();
 	}
 	
