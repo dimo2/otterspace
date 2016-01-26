@@ -112,9 +112,7 @@ public class MiniGame_DodgeAsteroids : MiniGame {
             foreach (Transform child in transform) Destroy(child.GetComponent<GameObject>()); // Für jedes Transform item(child) in transform.
         }
 
-        //landscape.transform.Translate(Vector3.left * Time.deltaTime*10);
-        //landscape.transform.Translate(Vector3.left * 0.15f); // Landscape Schnelligkeit ( Von Timefactor abhängig machen? )
-        landscape.transform.Translate(new Vector3 (-0.15f - ((1 - timeFactor)* 0.5f), 0)); // Wieso geht das? Sollte das niht an einem Ort stehen?
+        landscape.transform.Translate(-((1.25f - timeFactor) * Time.deltaTime) * 37, 0, 0);
         if (landscape.transform.localPosition.x <= -26)
         {
             GameObject.Destroy(landscape);
@@ -122,26 +120,24 @@ public class MiniGame_DodgeAsteroids : MiniGame {
             landscape.transform.parent = transform;
         }
 
-        //distanceToFinish -= 0.15f; // Wenn die Landscape, dann auch diese Zahl an den Timefactor anpassen.
-        distanceToFinish = distanceToFinish - 0.15f - ((1 - timeFactor) * 0.5f);
+        distanceToFinish -= ((1.25f - timeFactor) * Time.deltaTime) * 37;
         if (finish == null && distanceToFinish < 13) 
         {
             finish = GameObject.Instantiate(finishPrefab);
             finish.transform.parent = transform;
         }
-        //if (finish != null) finish.transform.Translate(Vector3.up * 0.15f); // Up, weil das Prafab um 90 Grad gedereht ist
-        if (finish != null) finish.transform.Translate(new Vector3(0, -0.15f - ((1 - timeFactor) * 0.5f)));
+        if (finish != null) finish.transform.Translate(0, -((1.25f - timeFactor) * Time.deltaTime) * 37, 0); // y, weil Prefab gedreht ist
 
         for (int i = 0; i < stars.Count; i++)
         {
-            stars[i].transform.Translate((-stars[i].transform.localScale.x * 0.01f), 0, 0); // Je größer der Stern, desto schneller soll er sich bewegen.
-            if (stars[i].transform.localPosition.x < -8.3f) stars[i].transform.localPosition = new Vector3(8.3f, stars[i].transform.localPosition.y, 0);
+            stars[i].transform.Translate((-stars[i].transform.localScale.x * Time.deltaTime), 0, 0); // Je größer der Stern, desto schneller soll er sich bewegen.
+            if (stars[i].transform.localPosition.x < -9f) stars[i].transform.localPosition = new Vector3(9f, stars[i].transform.localPosition.y, 0);
             float color = Mathf.Sin(time2 * i * 0.2f) * 0.4f; // Sterneflackern Opacity
             stars[i].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, stars[i].GetComponent<SpriteRenderer>().color.a + color);
         }
 
-        mond.transform.Translate(Vector3.left * Time.deltaTime*0.3f);
-        mond.transform.localEulerAngles = new Vector3(0, 0, mond.transform.localEulerAngles.z + 0.017f); //.localEulerAngles.Set geht nicht!!
+        mond.transform.Translate(Vector3.left * Time.deltaTime * 0.3f);
+        mond.transform.localEulerAngles = new Vector3(0, 0, mond.transform.localEulerAngles.z + 2 * Time.deltaTime); //.localEulerAngles.Set geht nicht!!
     }
 
    /* public void OnGUI()

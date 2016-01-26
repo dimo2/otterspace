@@ -44,14 +44,14 @@ public class MiniGame_DA_AsteroidSlow : MonoBehaviour { // Beim Umbenennen in Un
 
         if (destroy)
         {
-            asteroid.transform.GetChild(0).Translate(-0.15f, 0.05f, 0, Space.World); // Space.World !
-            asteroid.transform.GetChild(0).localEulerAngles = new Vector3(0, 0, asteroid.transform.GetChild(0).localEulerAngles.z + rot1);
-            asteroid.transform.GetChild(1).Translate(-0.15f, -0.05f, 0, Space.World);
-            asteroid.transform.GetChild(1).localEulerAngles = new Vector3(0, 0, asteroid.transform.GetChild(1).localEulerAngles.z + rot2);
-            asteroid.transform.GetChild(2).Translate(-0.05f, 0.05f, 0, Space.World);
-            asteroid.transform.GetChild(2).localEulerAngles = new Vector3(0, 0, asteroid.transform.GetChild(2).localEulerAngles.z + rot3);
-            asteroid.transform.GetChild(3).Translate(-0.05f, -0.05f, 0, Space.World);
-            asteroid.transform.GetChild(3).localEulerAngles = new Vector3(0, 0, asteroid.transform.GetChild(3).localEulerAngles.z + rot4);
+            asteroid.transform.GetChild(0).Translate(Time.deltaTime, Time.deltaTime, 0, Space.World); // Space.World !
+            asteroid.transform.GetChild(0).localEulerAngles = new Vector3(0, 0, asteroid.transform.GetChild(0).localEulerAngles.z + rot1 * Time.deltaTime);
+            asteroid.transform.GetChild(1).Translate(-Time.deltaTime*3, -Time.deltaTime/3*3, 0, Space.World);
+            asteroid.transform.GetChild(1).localEulerAngles = new Vector3(0, 0, asteroid.transform.GetChild(1).localEulerAngles.z + rot2 * Time.deltaTime);
+            asteroid.transform.GetChild(2).Translate(-Time.deltaTime/3*3, Time.deltaTime/3, 0, Space.World);
+            asteroid.transform.GetChild(2).localEulerAngles = new Vector3(0, 0, asteroid.transform.GetChild(2).localEulerAngles.z + rot3 * Time.deltaTime);
+            asteroid.transform.GetChild(3).Translate(-Time.deltaTime/3*3, -Time.deltaTime/3*3, 0, Space.World);
+            asteroid.transform.GetChild(3).localEulerAngles = new Vector3(0, 0, asteroid.transform.GetChild(3).localEulerAngles.z + rot4 * Time.deltaTime);
             if (time > 2) Destroy(this.gameObject);
         }
     }
@@ -66,10 +66,10 @@ public class MiniGame_DA_AsteroidSlow : MonoBehaviour { // Beim Umbenennen in Un
 
         this.gameObject.GetComponent<Collider2D>().enabled = false; // Polygon Collider disablen
 
-        rot1 = Random.Range(6, 10);
-        rot2 = Random.Range(6, 10);
-        rot3 = Random.Range(6, 10);
-        rot4 = Random.Range(6, 10);
+        rot1 = Random.Range(200, 400);
+        rot2 = Random.Range(200, 400);
+        rot3 = Random.Range(200, 400);
+        rot4 = Random.Range(200, 400);
 
         asteroid = go;
         destroy = true;

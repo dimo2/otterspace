@@ -37,12 +37,12 @@ public class MiniGame_DA_AsteroidFast : MonoBehaviour {
         }
         if (destroy)
         {
-            asteroid.transform.GetChild(0).Translate(-0.25f, 0.05f, 0, Space.World);
-            asteroid.transform.GetChild(0).localEulerAngles = new Vector3(0, 0, asteroid.transform.GetChild(0).localEulerAngles.z + rot1);
-            asteroid.transform.GetChild(1).Translate(-0.25f, -0.05f, 0, Space.World);
-            asteroid.transform.GetChild(1).localEulerAngles = new Vector3(0, 0, asteroid.transform.GetChild(1).localEulerAngles.z + rot2);
-            asteroid.transform.GetChild(2).Translate(-0.30f, 0.05f, 0, Space.World);
-            asteroid.transform.GetChild(2).localEulerAngles = new Vector3(0, 0, asteroid.transform.GetChild(2).localEulerAngles.z + rot3);
+            asteroid.transform.GetChild(0).Translate(-13 * Time.deltaTime, 13 * Time.deltaTime/5, 0, Space.World);
+            asteroid.transform.GetChild(0).localEulerAngles = new Vector3(0, 0, asteroid.transform.GetChild(0).localEulerAngles.z + rot1 * Time.deltaTime);
+            asteroid.transform.GetChild(1).Translate(-13 * Time.deltaTime, -13 * Time.deltaTime / 5, 0, Space.World);
+            asteroid.transform.GetChild(1).localEulerAngles = new Vector3(0, 0, asteroid.transform.GetChild(1).localEulerAngles.z + rot2 * Time.deltaTime);
+            asteroid.transform.GetChild(2).Translate(-16f * Time.deltaTime, 13 * Time.deltaTime / 5, 0, Space.World);
+            asteroid.transform.GetChild(2).localEulerAngles = new Vector3(0, 0, asteroid.transform.GetChild(2).localEulerAngles.z + rot3 * Time.deltaTime);
             if (time > 2) Destroy(this.gameObject);
         }
     }
@@ -58,9 +58,9 @@ public class MiniGame_DA_AsteroidFast : MonoBehaviour {
 
         this.gameObject.GetComponent<Collider2D>().enabled = false; // Polygon Collider disablen
 
-        rot1 = Random.Range(6, 10);
-        rot2 = Random.Range(6, 10);
-        rot3 = Random.Range(6, 10);
+        rot1 = Random.Range(200, 400);
+        rot2 = Random.Range(200, 400);
+        rot3 = Random.Range(200, 400);
 
         asteroid = go;
         destroy = true;
