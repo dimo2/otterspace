@@ -178,7 +178,7 @@ public class Minigame_Memory : MiniGame
             }
             else
             {
-                if (!showingCards) Score++;
+                if (!showingCards) Score=Score+5;
                 CheckField();
             }
         }

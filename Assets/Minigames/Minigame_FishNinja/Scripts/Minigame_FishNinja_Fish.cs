@@ -25,7 +25,7 @@ public class Minigame_FishNinja_Fish : MonoBehaviour {
 	{
 
 		Minigame_FishNinja fishNinja = transform.GetComponentInParent<Minigame_FishNinja> ();
-		speed = 12.0f * (1+(1-fishNinja.tF));
+		speed = 10.0f * (1+(1-fishNinja.tF));
 
 
 		index = Random.Range (0, 3);

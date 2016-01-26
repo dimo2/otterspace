@@ -49,7 +49,7 @@ public class Minigame_FishNinja : MiniGame {
 
 
 	private void createFish() {
-		if (createTime > (0.5 * timeFactor)) {
+		if (createTime > (0.7 * timeFactor)) {
 			// createTime += period;
 
 			GameObject go;
