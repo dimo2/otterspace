@@ -101,7 +101,7 @@ public class Minigame_Jetpack : MiniGame
             return;
         }
 
-		print (transform.GetComponentInChildren<PauseButton> ().isPaused);
+		//print (transform.GetComponentInChildren<PauseButton> ().isPaused);
 		// Kamera-Verhalten
 		if (transform.GetComponentInChildren<PauseButton>().isPaused == false &&
 		    !transform.FindChild("Instructions")) {

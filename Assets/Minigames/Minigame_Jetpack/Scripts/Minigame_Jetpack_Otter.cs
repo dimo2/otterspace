@@ -56,7 +56,7 @@ public class Minigame_Jetpack_Otter : MonoBehaviour {
             move = new Vector3(Input.mousePosition.x / Screen.width, Input.mousePosition.y / Screen.height, 0) - originPoint;
             move.x = Mathf.Clamp(move.x, -0.1f, 0.1f);
             move.y =  Mathf.Clamp(move.y, -0.1f, 0.1f);
-            Debug.Log(move);
+
             if (move.x < 0)
             {
                 transform.localEulerAngles = new Vector3(0, 180, move.x * 150);
