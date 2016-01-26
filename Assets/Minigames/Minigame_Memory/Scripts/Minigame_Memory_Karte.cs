@@ -14,6 +14,7 @@ public class Minigame_Memory_Karte : MonoBehaviour
 
 	public bool isFlipped;
 	public float flipTime;
+    private bool isClickable;
 
 	public void Create(Sprite _f, Sprite _b, Minigame_Memory _m)
 	{
@@ -23,11 +24,17 @@ public class Minigame_Memory_Karte : MonoBehaviour
 		isFlipped = false;
 		sr = GetComponent<SpriteRenderer>();
         mainGame = _m;
+        isClickable = false;
 	}
+
+    public void MakeClickable()
+    {
+        isClickable = true;
+    }
 
 	public void OnMouseDown()
 	{
-        if (!isFlipped)
+        if (!isFlipped && isClickable)
         {
             Flip();
         }

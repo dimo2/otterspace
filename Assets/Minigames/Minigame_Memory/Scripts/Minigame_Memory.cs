@@ -29,8 +29,8 @@ public class Minigame_Memory : MiniGame
         }
         if (timeFactor <= 0.75f)
         {
-            rows = 2;
-            columns = 4;
+            rows = 3;
+            columns = 3;
         }
         if (timeFactor <= 0.5f)
         {
@@ -117,18 +117,18 @@ public class Minigame_Memory : MiniGame
     private IEnumerator ShowAll()
     {
         for (int i = 0; i < Karten.Count; i++)
-        {
             Karten[i].Flip();
-        }
 
         yield return new WaitForSeconds(2);
 
         for (int i = 0; i < Karten.Count; i++)
-        {
             Karten[i].Flip();
-        }
-        showingCards = false;
 
+        yield return new WaitForSeconds(1);
+
+        for (int i = 0; i < Karten.Count; i++)
+            Karten[i].MakeClickable();
+        showingCards = false;
     }
 
     private void CheckField()
