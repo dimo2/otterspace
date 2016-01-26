@@ -8,14 +8,45 @@ public class Minigame_SI_Main : MiniGame {
 	private int leben;
     public float SIscore;
 
-    private GUIStyle style;
+    private List<GameObject> stars;
+    public GameObject starPrefab;
+    private float timeStars;
+
+    public GameObject mondPrefab;
+    private GameObject mond;
+
+
 	public float tF;
+    private float time2;
 
     // Use this for initialization
     void Start () {
-		tF = timeFactor;
+        GameObject go;
+ 
+
+        tF = timeFactor;
         SIscore = 0f;
-        style = GameObject.FindGameObjectWithTag("GameController").GetComponent<MainGame>().Style;
+
+       
+        time2 = 0;
+
+        stars = new List<GameObject>();
+        for (int i = 0; i < 60; i++)
+        {
+            go = GameObject.Instantiate(starPrefab);
+            go.transform.localPosition = new Vector3(Random.Range(-10f, 10f), Random.Range(-6f, 8f), 0);
+            float scale = Random.Range(-0.15f, 0.15f);
+            
+            go.transform.localScale = new Vector3(0.5f + scale, 0.5f + scale, 1);
+            go.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1 + scale * 2 - 0.3f);
+            stars.Add(go);
+        }
+        timeStars = 0;
+
+        go = GameObject.Instantiate(mondPrefab);
+
+        go.transform.localPosition = new Vector3(8, Random.Range(-5f, 8f), 0);
+        mond = go;
 
     }
 	
@@ -32,22 +63,21 @@ public class Minigame_SI_Main : MiniGame {
 
 		if (transform.GetComponentInChildren<Minigame_SI_randomshot> ().won) {
 			Win ();
-			Score += 30.0f;
+			Score += 20.0f;
 		}
-	}
 
-/*
-    public void OnGUI()
-    {
-        GUI.Label(
-            new Rect(
-            Screen.width / 2 - Screen.width / 10,
-            Screen.height / 40,
-            Screen.width / 5, 40),
-            "Leben übrig: " + leben.ToString(),
-            style);
+        
+        timeStars += Time.deltaTime;
+        for (int i = 0; i < stars.Count; i++)
+        {
+            float color = Mathf.Sin(timeStars * i * 0.2f) * 0.4f; // Sterneflackern Opacity
+            stars[i].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, stars[i].GetComponent<SpriteRenderer>().color.a + color);
+        }
+
+        mond.transform.Translate(Vector3.left * Time.deltaTime * 0.3f);
+        mond.transform.localEulerAngles = new Vector3(0, 0, mond.transform.localEulerAngles.z + 0.017f);
     }
-    
-*/
+
+
 
 }

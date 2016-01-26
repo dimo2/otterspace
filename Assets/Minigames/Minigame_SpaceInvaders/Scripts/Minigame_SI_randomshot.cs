@@ -7,6 +7,7 @@ public class Minigame_SI_randomshot : MonoBehaviour {
     private float dTime;
 	public bool won;
 	public GameObject alienshot;
+
 	// Use this for initialization
 	void Start () 
     {
