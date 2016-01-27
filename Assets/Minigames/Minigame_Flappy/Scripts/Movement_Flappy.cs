@@ -27,7 +27,7 @@ public class Movement_Flappy : MiniGame
 
 	void OnCollisionEnter2D(Collision2D col)
 	{
-		Debug.Log("is collided");
+		//Debug.Log("is collided");
 		script.IsLost ();
 
 	}

@@ -29,7 +29,7 @@ public class Pillars_Flappy : MiniGame {
     public void IsLost()
     {
         Lose();
-		Debug.Log("bitte bitte bitte mach");
+		//Debug.Log("bitte bitte bitte mach");
  //     EditorApplication.isPaused = true;
     }
 

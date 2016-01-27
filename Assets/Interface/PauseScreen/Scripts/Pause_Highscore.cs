@@ -34,8 +34,11 @@ public class Pause_Highscore : MonoBehaviour {
 		Rect highscore = new Rect (0, 0, Screen.width / 3, 40);
 		Rect score = new Rect (0, 0, Screen.width / 3, 40);
 
-		string t, t2;
-		if (g.score > mg.score) {
+        if (PlayerPrefs.HasKey("highscore")) myHighscore = PlayerPrefs.GetFloat("highscore");
+        else myHighscore = 0;
+
+        string t, t2;
+		if (g.score > myHighscore) {
 			t = "New Highscore";
 			t2 = "Old Highscore";
 		} else {
@@ -53,9 +56,10 @@ public class Pause_Highscore : MonoBehaviour {
 		GUI.Label(text2, t2, style);
 
 		highscore.center = new Vector2 (Screen.width/2 - Screen.width/15, Screen.height/2+Screen.height/4);
-		GUI.Label(highscore, mg.score.ToString(), style);
-			
-	}
+        //GUI.Label(highscore, mg.score.ToString(), style);
+        GUI.Label(highscore, myHighscore.ToString(), style);
+
+    }
 
 
 }
