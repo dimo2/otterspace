@@ -29,8 +29,8 @@ public class Minigame_Memory : MiniGame
         }
         if (timeFactor <= 0.75f)
         {
-            rows = 3;
-            columns = 3;
+            rows = 2; // 3
+            columns = 4; // 3
         }
         if (timeFactor <= 0.5f)
         {
