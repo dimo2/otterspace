@@ -17,8 +17,6 @@ public class ScoreScreen : MonoBehaviour {
 
 		showScore ();
         setHighscore(g.score);
-
-        if (PlayerPrefs.HasKey("highscore")) Debug.Log(PlayerPrefs.GetFloat("highscore"));
     }
 	
 	// Update is called once per frame
