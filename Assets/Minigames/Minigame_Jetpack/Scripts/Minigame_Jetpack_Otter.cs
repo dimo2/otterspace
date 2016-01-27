@@ -30,7 +30,7 @@ public class Minigame_Jetpack_Otter : MonoBehaviour {
         timefactor = transform.parent.GetComponent<Minigame_Jetpack>().publicTimeFactor;
 
         lives = 3;
-        jetpackFuel = 150;
+        jetpackFuel = 180;
         if (timefactor > 0.4f) jetpackFuel *= timefactor;
         else jetpackFuel *= 0.4f;
         loseFuel = 0;
