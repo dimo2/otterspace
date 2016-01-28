@@ -33,6 +33,7 @@ public class MiniGame_DodgeAsteroids : MiniGame {
     private float distanceToFinish;
     private float time;
     private float time2;
+    private float mappedTimeFactor;
 
     private GUIStyle style;
 
@@ -80,6 +81,7 @@ public class MiniGame_DodgeAsteroids : MiniGame {
         time = 0;
         time2 = 0;
         publicTimeFactor = timeFactor;
+        mappedTimeFactor = 1 + ((0.45f - 1) / (0 - 1)) * (timeFactor - 1);
 
         style = GameObject.FindGameObjectWithTag("GameController").GetComponent<MainGame>().Style;
     }
@@ -94,7 +96,7 @@ public class MiniGame_DodgeAsteroids : MiniGame {
             int r = Random.Range(0, 3);
             go = GameObject.Instantiate(asteroids[r]);
             go.transform.parent = transform;
-            timeToAppear = timeFactor * 2 + Random.Range(-0.25f, 0.25f);
+            timeToAppear = mappedTimeFactor * 2 + Random.Range(-0.25f, 0.25f);
             time = 0;
         }
 
@@ -112,7 +114,7 @@ public class MiniGame_DodgeAsteroids : MiniGame {
             foreach (Transform child in transform) Destroy(child.GetComponent<GameObject>()); // Für jedes Transform item(child) in transform.
         }
 
-        landscape.transform.Translate(-((1.25f - timeFactor) * Time.deltaTime) * 37, 0, 0);
+        landscape.transform.Translate(-((1.25f - mappedTimeFactor) * Time.deltaTime) * 37, 0, 0);
         if (landscape.transform.localPosition.x <= -26)
         {
             GameObject.Destroy(landscape);
@@ -120,13 +122,13 @@ public class MiniGame_DodgeAsteroids : MiniGame {
             landscape.transform.parent = transform;
         }
 
-        distanceToFinish -= ((1.25f - timeFactor) * Time.deltaTime) * 37;
+        distanceToFinish -= ((1.25f - mappedTimeFactor) * Time.deltaTime) * 37;
         if (finish == null && distanceToFinish < 13) 
         {
             finish = GameObject.Instantiate(finishPrefab);
             finish.transform.parent = transform;
         }
-        if (finish != null) finish.transform.Translate(0, -((1.25f - timeFactor) * Time.deltaTime) * 37, 0); // y, weil Prefab gedreht ist
+        if (finish != null) finish.transform.Translate(0, -((1.25f - mappedTimeFactor) * Time.deltaTime) * 37, 0); // y, weil Prefab gedreht ist
 
         for (int i = 0; i < stars.Count; i++)
         {

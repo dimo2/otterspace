@@ -21,7 +21,6 @@ public class MiniGame_DA_AsteroidFast : MonoBehaviour {
         targetPosition.Set(-11, y, 0);
         transform.localPosition = startPosition;
         timeFactor = transform.parent.GetComponent<MiniGame_DodgeAsteroids>().publicTimeFactor;
-        Debug.Log(timeFactor);
         speed = 0.8f;
         speed = speed + (1 - timeFactor);
     }
