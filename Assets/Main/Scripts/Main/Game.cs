@@ -41,7 +41,7 @@ public class Game : MonoBehaviour
         for (;;)
         {
             r = Random.Range(0, games.Count);
-            if (r != lastGame)
+			if (r != lastGame || games.Count <= 1)
                 break;
         }
         lastGame = r;
