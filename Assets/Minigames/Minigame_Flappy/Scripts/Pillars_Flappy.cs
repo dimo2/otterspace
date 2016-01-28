@@ -6,10 +6,9 @@ public class Pillars_Flappy : MiniGame {
 
     public GameObject pillars;
     public float pillarInterval = 2;
-    private GameObject go;
+
 
 //	private List<GameObject> stars; // Für die dreist von Niko geklauten Background-Sterne
-	public GameObject starPrefab;
 
     int score = 0;
 	// Use this for initialization

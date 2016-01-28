@@ -16,7 +16,7 @@ public class Movement_Flappy : MiniGame
     void Update()
     // Flap bei Input
     {
-        if (Input.GetMouseButtonDown(0)) 
+		if (Input.GetMouseButtonDown(0) && Time.deltaTime != 0) 
         {
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
