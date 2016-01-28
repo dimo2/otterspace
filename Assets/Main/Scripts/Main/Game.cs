@@ -20,6 +20,8 @@ public class Game : MonoBehaviour
 	public int 	life;
 
 	public AudioClip music;
+	public AudioClip win;
+	public AudioClip lose;
 	
 	public void Start()
 	{
@@ -79,6 +81,7 @@ public class Game : MonoBehaviour
 				CalculateTimeFactor();
 				g.Destroy();
 				g = null;
+				audio.clip = win;
 				audio.Play ();
 				state = State.WAITING;
 				waitTime = 0;
@@ -89,6 +92,7 @@ public class Game : MonoBehaviour
 					GameOver();
 				g.Destroy();
 				g = null;
+				audio.clip = lose;
 				audio.Play ();
 				state = State.WAITING;
 				waitTime = 0;
