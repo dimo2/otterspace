@@ -35,4 +35,5 @@ public class PillarMovement : MiniGame
 	void OnBecameInvisible(){
 		Destroy(gameObject);
 	}
+
 }
