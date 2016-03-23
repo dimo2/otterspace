@@ -53,18 +53,22 @@ public class Minigame_SI_Main : MiniGame {
         if (timeFactor > 0.75f)
         {
             SIscore = 20f;
+            Debug.LogError("Tf:" + timeFactor + ", Score : " + SIscore);
         }
         if (timeFactor <= 0.75f)
         {
             SIscore = 30f;
+            Debug.LogError("Tf:" + timeFactor + ", Score : " + SIscore);
         }
         if (timeFactor <= 0.5f)
         {
-            SIscore = 40f; 
+            SIscore = 40f;
+            Debug.LogError("Tf:" + timeFactor + ", Score : " + SIscore);
         }
         if (timeFactor <= 0.25f)
         {
             SIscore = 50f;
+            Debug.LogError("Tf:" + timeFactor + ", Score : " + SIscore);
         }
     }
 	

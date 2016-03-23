@@ -19,20 +19,22 @@ public class Alienrow : MiniGame {
 
         if (timeFactor > 0.75f)
         {
-            alienspeed = 3.5f;
+            alienspeed = 1.0f;
         }
         if (timeFactor <= 0.75f)
         {
-            alienspeed = 3.0f;
+            alienspeed = 2.0f;
         }
         if (timeFactor <= 0.5f)
         {
-            alienspeed = 2.0f;
+            alienspeed = 3.0f;
         }
         if (timeFactor <= 0.25f)
         {
-            alienspeed = 1.0f;
+            alienspeed = 3.5f;
         }
+
+
     }
 	
 	// Update is called once per frame

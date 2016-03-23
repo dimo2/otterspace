@@ -27,20 +27,21 @@ public class Minigame_SI_OtterShip : MiniGame {
 
         if (timeFactor > 0.75f)
         {
-            schwierigkeit = 35f;
+            schwierigkeit = 10f;
         }
         if (timeFactor <= 0.75f)
         {
-            schwierigkeit = 30f;
+            schwierigkeit = 20f;
         }
         if (timeFactor <= 0.5f)
         {
-            schwierigkeit = 20f;
+            schwierigkeit = 30f;
         }
         if (timeFactor <= 0.25f)
         {
-            schwierigkeit = 10f;
+            schwierigkeit = 35f;
         }
+        Debug.LogError("Tf:" + timeFactor + ", schwierigkeit : " + schwierigkeit);
     }
 
     // Update is called once per frame

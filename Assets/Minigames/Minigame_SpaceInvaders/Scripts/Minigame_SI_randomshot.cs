@@ -15,24 +15,26 @@ public class Minigame_SI_randomshot : MiniGame {
         dTime = 0f;
         if (timeFactor > 0.75f)
         {
-            cooldown = 0.5f;
+            cooldown = 2f;
         }
         if (timeFactor <= 0.75f)
         {
-            cooldown = 1.0f;
+            cooldown = 1.5f;
         }
         if (timeFactor <= 0.5f)
         {
-            cooldown = 1.5f;
+            cooldown = 1f;
         }
         if (timeFactor <= 0.25f)
         {
-            cooldown = 2f;
+            cooldown = 1f;
         }
         alldead = 1f;
         //cooldown eventuell mit Time Factor verknüpfen hier?
         cooldown *= transform.GetComponentInParent<Minigame_SI_Main>().tF;
-	}
+
+        Debug.LogError("Tf:" + timeFactor + ", cd : " + cooldown);
+    }
 	
 	// Update is called once per frame
 	void Update () 
