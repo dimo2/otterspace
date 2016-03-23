@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Minigame_SI_block : MonoBehaviour {
-	public float resistenz = 5.0f;
+	public float resistenz = 3.0f;
 	// Use this for initialization
 	void Start () {
 	

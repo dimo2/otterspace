@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Minigame_SI_randomshot : MonoBehaviour {
+public class Minigame_SI_randomshot : MiniGame {
 	public float alldead = 1f;
     public float cooldown;
     private float dTime;
@@ -13,8 +13,23 @@ public class Minigame_SI_randomshot : MonoBehaviour {
     {
 		won = false;
         dTime = 0f;
-		cooldown = 2f;
-		alldead = 1f;
+        if (timeFactor > 0.75f)
+        {
+            cooldown = 0.5f;
+        }
+        if (timeFactor <= 0.75f)
+        {
+            cooldown = 1.0f;
+        }
+        if (timeFactor <= 0.5f)
+        {
+            cooldown = 1.5f;
+        }
+        if (timeFactor <= 0.25f)
+        {
+            cooldown = 2f;
+        }
+        alldead = 1f;
         //cooldown eventuell mit Time Factor verknüpfen hier?
         cooldown *= transform.GetComponentInParent<Minigame_SI_Main>().tF;
 	}
@@ -35,6 +50,8 @@ public class Minigame_SI_randomshot : MonoBehaviour {
 
 		if (GameObject.FindGameObjectsWithTag ("Gegner").Length == 0)
 			won = true;
+
+       
 	}
     
     Transform RandomInvader() 

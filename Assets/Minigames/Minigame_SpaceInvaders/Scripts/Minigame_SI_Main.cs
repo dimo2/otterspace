@@ -14,7 +14,7 @@ public class Minigame_SI_Main : MiniGame {
 
     public GameObject mondPrefab;
     private GameObject mond;
-
+	private GameObject[] fish;
 
 	public float tF;
     private float time2;
@@ -25,7 +25,7 @@ public class Minigame_SI_Main : MiniGame {
  
 
         tF = timeFactor;
-        SIscore = 0f;
+        
 
        
         time2 = 0;
@@ -48,6 +48,24 @@ public class Minigame_SI_Main : MiniGame {
         go.transform.localPosition = new Vector3(8, Random.Range(-5f, 8f), 0);
         mond = go;
 
+
+
+        if (timeFactor > 0.75f)
+        {
+            SIscore = 20f;
+        }
+        if (timeFactor <= 0.75f)
+        {
+            SIscore = 30f;
+        }
+        if (timeFactor <= 0.5f)
+        {
+            SIscore = 40f; 
+        }
+        if (timeFactor <= 0.25f)
+        {
+            SIscore = 50f;
+        }
     }
 	
 	// Update is called once per frame
@@ -57,13 +75,25 @@ public class Minigame_SI_Main : MiniGame {
 
 		if (transform.GetComponentInChildren<Minigame_SI_OtterShip>().otterdead)
 		{
+			fish = GameObject.FindGameObjectsWithTag("Fish");
+			for(int i=0;i<fish.Length;i++) Destroy(fish[i]);
 			Lose();
 		}
+        if (transform.GetComponentInChildren<Alienrow>().lose)
+        {
+            fish = GameObject.FindGameObjectsWithTag("Fish");
+            for (int i = 0; i < fish.Length; i++) Destroy(fish[i]);
+            Lose();
+
+        }
 
 
-		if (transform.GetComponentInChildren<Minigame_SI_randomshot> ().won) {
+        if (transform.GetComponentInChildren<Minigame_SI_randomshot> ().won) {
+			fish = GameObject.FindGameObjectsWithTag("Fish");
+			for(int i=0;i<fish.Length;i++) Destroy(fish[i]);
+			Score += SIscore;
 			Win ();
-			Score += 20.0f;
+
 		}
 
         

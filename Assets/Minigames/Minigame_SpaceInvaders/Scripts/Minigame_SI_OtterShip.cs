@@ -2,15 +2,18 @@
 using System.Collections;
 
 
-public class Minigame_SI_OtterShip : MonoBehaviour {
+public class Minigame_SI_OtterShip : MiniGame {
 	public bool otterdead = false;
     public float SIlive = 3.0f;
 
 
-	private float speed = 5f;
+	private float speed = 10f;
+    private float delay = 0f;
 	public float minX = -7.7f;
 	public float maxX = 8.0f;
-	public int leben;
+
+    public float schwierigkeit = 0f;
+    public int leben;
 
     public GameObject bullet;
     public GameObject firingPoint;
@@ -21,7 +24,23 @@ public class Minigame_SI_OtterShip : MonoBehaviour {
     void Start () {
 		leben = 1;
 		otterdead = false;
-        //Assets/Minigames/Minigame_SpaceInvaders bullet =(GameObject)Resources.Load("../Sprites/bullet");
+
+        if (timeFactor > 0.75f)
+        {
+            schwierigkeit = 35f;
+        }
+        if (timeFactor <= 0.75f)
+        {
+            schwierigkeit = 30f;
+        }
+        if (timeFactor <= 0.5f)
+        {
+            schwierigkeit = 20f;
+        }
+        if (timeFactor <= 0.25f)
+        {
+            schwierigkeit = 10f;
+        }
     }
 
     // Update is called once per frame
@@ -62,17 +81,21 @@ public class Minigame_SI_OtterShip : MonoBehaviour {
 			transform.position = new Vector3(maxX, transform.position.y, transform.position.z);}
 		}
 
-    
-            
-            if (Input.GetMouseButtonDown(0))
-            {
-            GameObject shot = (GameObject)Instantiate(bullet, firingPoint.transform.position, Quaternion.identity);
-			shot.transform.parent = GameObject.Find ("Minigame_SpaceInvaders(Clone)").transform;
-            
+
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (delay == 0) { 
+                 GameObject shot = (GameObject)Instantiate(bullet, firingPoint.transform.position, Quaternion.identity);
+                 shot.transform.parent = GameObject.Find("Minigame_SpaceInvaders(Clone)").transform;
+                 delay = schwierigkeit;
             }
-
-
+         }
+        if (delay > 0)
+        {
+            delay -= 1;
         }
+    }
    
 
 	void OnCollisionEnter2D(Collision2D col)
