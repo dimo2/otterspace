@@ -55,9 +55,9 @@ public class Minigame_SI_Main : MiniGame {
             SIscore = 20f;
             Debug.LogError("Tf:" + timeFactor + ", Score : " + SIscore);
         }
-        else if (timeFactor <= 0.75f)
+        else if (timeFactor <= 0.25f)
         {
-            SIscore = 30f;
+            SIscore = 50f;
             Debug.LogError("Tf:" + timeFactor + ", Score : " + SIscore);
         }
         else if (timeFactor <= 0.5f)
@@ -65,11 +65,12 @@ public class Minigame_SI_Main : MiniGame {
             SIscore = 40f;
             Debug.LogError("Tf:" + timeFactor + ", Score : " + SIscore);
         }
-        else if (timeFactor <= 0.25f)
+        else if (timeFactor <= 0.75f)
         {
-            SIscore = 50f;
+            SIscore = 30f;
             Debug.LogError("Tf:" + timeFactor + ", Score : " + SIscore);
         }
+
     }
 	
 	// Update is called once per frame
