@@ -11,25 +11,29 @@ public class Alienrow : MiniGame {
     public bool nachRechts = true;
     public float loseSI = 3f;
     public bool lose = false;
+
+    private float tF;
     // Use this for initialization
     void Start () {
 
         loseSI = 3f;
         lose = false;
 
-        if (timeFactor > 0.75f)
+        tF = gameObject.GetComponentInParent<Minigame_SI_Main>().timeF;
+
+        if (tF > 0.75f)
         {
             alienspeed = 1.0f;
         }
-        if (timeFactor <= 0.75f)
+        else if (tF <= 0.75f)
         {
             alienspeed = 2.0f;
         }
-        if (timeFactor <= 0.5f)
+        else if (tF <= 0.5f)
         {
             alienspeed = 3.0f;
         }
-        if (timeFactor <= 0.25f)
+        else if (tF <= 0.25f)
         {
             alienspeed = 3.5f;
         }

@@ -16,7 +16,7 @@ public class Minigame_SI_Main : MiniGame {
     private GameObject mond;
 	private GameObject[] fish;
 
-	public float tF;
+	public float timeF;
     private float time2;
 
     // Use this for initialization
@@ -24,7 +24,7 @@ public class Minigame_SI_Main : MiniGame {
         GameObject go;
  
 
-        tF = timeFactor;
+        timeF = timeFactor;
         
 
        
@@ -55,17 +55,17 @@ public class Minigame_SI_Main : MiniGame {
             SIscore = 20f;
             Debug.LogError("Tf:" + timeFactor + ", Score : " + SIscore);
         }
-        if (timeFactor <= 0.75f)
+        else if (timeFactor <= 0.75f)
         {
             SIscore = 30f;
             Debug.LogError("Tf:" + timeFactor + ", Score : " + SIscore);
         }
-        if (timeFactor <= 0.5f)
+        else if (timeFactor <= 0.5f)
         {
             SIscore = 40f;
             Debug.LogError("Tf:" + timeFactor + ", Score : " + SIscore);
         }
-        if (timeFactor <= 0.25f)
+        else if (timeFactor <= 0.25f)
         {
             SIscore = 50f;
             Debug.LogError("Tf:" + timeFactor + ", Score : " + SIscore);

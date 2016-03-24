@@ -10,10 +10,7 @@ public class Minigame_SI_block : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (resistenz <= 0) {
-			Destroy (this.gameObject);
-
-		}
+		
 	}
 
 	void OnCollisionEnter2D(Collision2D col)
@@ -21,8 +18,12 @@ public class Minigame_SI_block : MonoBehaviour {
 		if (col.gameObject.tag.Contains("Otter")) {
 			Destroy(col.gameObject);
 			resistenz--;
+            if (resistenz <= 0)
+            {
+                Destroy(this.gameObject);
 
-		}
+            }
+        }
 
 	}
 

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 
 public class Minigame_SI_OtterShip : MiniGame {
@@ -18,30 +19,32 @@ public class Minigame_SI_OtterShip : MiniGame {
     public GameObject bullet;
     public GameObject firingPoint;
 
-    
+    public float tF;
+
 
     // Use this for initialization
     void Start () {
 		leben = 1;
 		otterdead = false;
+        tF = gameObject.GetComponentInParent<Minigame_SI_Main>().timeF;
 
-        if (timeFactor > 0.75f)
+        if (tF > 0.75f)
         {
             schwierigkeit = 10f;
         }
-        if (timeFactor <= 0.75f)
+        else if (tF <= 0.75f)
         {
             schwierigkeit = 20f;
         }
-        if (timeFactor <= 0.5f)
+        else if (tF <= 0.5f)
+        {
+            schwierigkeit = 25f;
+        }
+        else if (tF <= 0.25f)
         {
             schwierigkeit = 30f;
         }
-        if (timeFactor <= 0.25f)
-        {
-            schwierigkeit = 35f;
-        }
-        Debug.LogError("Tf:" + timeFactor + ", schwierigkeit : " + schwierigkeit);
+        
     }
 
     // Update is called once per frame
