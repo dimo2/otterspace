@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-public class Minigame_SI_OtterShip : MiniGame {
+public class Minigame_SI_OtterShip : MonoBehaviour {
 	public bool otterdead = false;
     public float SIlive = 3.0f;
 

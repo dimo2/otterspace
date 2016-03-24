@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Minigame_SI_randomshot : MiniGame {
+public class Minigame_SI_randomshot : MonoBehaviour {
 	public float alldead = 1f;
     public float cooldown;
     private float dTime;
